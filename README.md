@@ -51,13 +51,13 @@ To execute and run this Cordova project locally:
 Sorry sir. Na download ako devices pero dili sha murun sa ako android studio. Nag browser extention rako.
 ## 7. Application Screenshots
 ### Desktop Layout
-![Desktop Layout]<img width="1837" height="875" alt="image" src="https://github.com/user-attachments/assets/04ffcfeb-d671-48e4-9a05-4643e145928b" />
+<img width="1837" height="875" alt="image" src="https://github.com/user-attachments/assets/04ffcfeb-d671-48e4-9a05-4643e145928b" />
 
 
 ### Tablet Layout
-![Tablet Layout]<img width="537" height="797" alt="image" src="https://github.com/user-attachments/assets/7e9a4060-2bce-4240-847d-debf7bcf7a55" />
+<img width="537" height="797" alt="image" src="https://github.com/user-attachments/assets/7e9a4060-2bce-4240-847d-debf7bcf7a55" />
 
 
 ### Mobile Layout
-![Mobile Layout]<img width="370" height="742" alt="image" src="https://github.com/user-attachments/assets/73d0b301-a543-4d38-a563-2001a4a6e1eb" />
+<img width="370" height="742" alt="image" src="https://github.com/user-attachments/assets/73d0b301-a543-4d38-a563-2001a4a6e1eb" />
 
