@@ -42,7 +42,19 @@ The `About` and `Skills` navigation links utilize pure HTML fragment identifiers
 ## 6. How to Run
 To execute and run this Cordova project locally:
 
+
 1. **Clone the repository:**
    ```bash
    git clone [https://github.com/1erdna/Nacaya_StudentProfile.git](https://github.com/1erdna/Nacaya_StudentProfile.git)
    cd Nacaya_StudentProfile
+
+Sorry sir. Na download ako devices pero dili sha murun sa ako android studio. Nag browser extention rako.
+## 7. Application Screenshots
+### Desktop Layout
+![Desktop Layout](img/desktop.png)
+
+### Tablet Layout
+![Tablet Layout](img/tablet.png)
+
+### Mobile Layout
+![Mobile Layout](img/mobile.png)
