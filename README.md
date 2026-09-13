@@ -30,19 +30,20 @@ Styled using standard CSS Flexbox, Grid, and `@media (max-width: 640px)` media q
    ## 7. Application Screenshots
 
 ### Profile (Homepage)
-Profile Page<img width="1917" height="1020" alt="Profile" src="https://github.com/user-attachments/assets/e7382e6f-dfb9-4ccf-9f0f-35bab7b822b5" />
+<img width="1917" height="1020" alt="Profile" src="https://github.com/user-attachments/assets/e7382e6f-dfb9-4ccf-9f0f-35bab7b822b5" />
 
 
 ### About Page
-About Page<img width="817" height="886" alt="About" src="https://github.com/user-attachments/assets/0b769a64-090e-4694-8d39-93aa8638db8c" />
+<img width="817" height="886" alt="About" src="https://github.com/user-attachments/assets/0b769a64-090e-4694-8d39-93aa8638db8c" />
 
 
 ### Skills Page
-Skills Page<img width="805" height="877" alt="Skills" src="https://github.com/user-attachments/assets/f851a568-3ab3-47b2-8453-5e78e158d18c" />
+
+<img width="805" height="877" alt="Skills" src="https://github.com/user-attachments/assets/f851a568-3ab3-47b2-8453-5e78e158d18c" />
 
 
 ### Projects Page
-![Projects Page](screenshots/projects.png)
+<img width="815" height="885" alt="Projects" src="https://github.com/user-attachments/assets/a858e7cf-96f4-4d63-bda2-9e7f55bfcbed" />
 
 ### Contact Page
-![Contact Page](screenshots/contact.png)
+<img width="810" height="883" alt="Contact" src="https://github.com/user-attachments/assets/99e156d9-4f64-4555-b35d-d9b0804f9338" />
