@@ -30,14 +30,16 @@ Styled using standard CSS Flexbox, Grid, and `@media (max-width: 640px)` media q
    ## 7. Application Screenshots
 
 ### Profile (Homepage)
-![Profile Page]<img width="1917" height="1020" alt="Profile" src="https://github.com/user-attachments/assets/e7382e6f-dfb9-4ccf-9f0f-35bab7b822b5" />
+Profile Page<img width="1917" height="1020" alt="Profile" src="https://github.com/user-attachments/assets/e7382e6f-dfb9-4ccf-9f0f-35bab7b822b5" />
 
 
 ### About Page
-![About Page](screenshots/about.png)
+About Page<img width="817" height="886" alt="About" src="https://github.com/user-attachments/assets/0b769a64-090e-4694-8d39-93aa8638db8c" />
+
 
 ### Skills Page
-![Skills Page](screenshots/skills.png)
+Skills Page<img width="805" height="877" alt="Skills" src="https://github.com/user-attachments/assets/f851a568-3ab3-47b2-8453-5e78e158d18c" />
+
 
 ### Projects Page
 ![Projects Page](screenshots/projects.png)
