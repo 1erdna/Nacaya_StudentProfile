@@ -1,68 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Student profile of Andrei Jullian Nacaya">
-    <title>Andrei Jullian Nacaya | Student Profile</title>
-    <link rel="stylesheet" href="css/index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Andrei Jullian Nacaya | Profile</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <main class="profile-card">
-        <header class="hero">
-            <img src="img/pink.jpg" alt="Profile photo of Andrei Jullian Nacaya" class="profile-pic">
-            <div class="hero-text">
-                <p class="eyebrow">STUDENT PROFILE</p>
-                <h1>Andrei Jullian Nacaya</h1>
-                <p class="subtitle">BS Computer Science Student</p>
-            </div>
-            <nav class="nav-menu" aria-label="Main navigation">
-                <a href="#about">About</a>
-                <a href="#skills">Skills</a>
-            </nav>
-        </header>
+  <header>
+    <div class="nav-pill">
+      <a href="index.html" class="nav-logo">AJN</a>
+      <nav>
+        <ul>
+          <li><a href="index.html" class="active">Profile</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="skills.html">Skills</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-        <div class="content-grid">
-            <section id="about" class="section-container">
-                <p class="section-label">01 — ABOUT</p>
-                <h2>About Myself</h2>
-                <p>I am a passionate Computer Science student dedicated to learning modern web technologies and mobile application development. I enjoy building functional applications and solving complex logical problems.</p>
-                <p>My academic path centers on expanding my technical skill set, collaborating on software projects, and adapting to industry-standard tools and workflows.</p>
+  <main>
+    <section class="hero">
+      <div class="hero-glow"></div>
+      <img src="https://github.com/1erdna.png" alt="Andrei Jullian Nacaya" style="width: 130px; height: 130px; border-radius: 50%; border: 3px solid #2563eb; margin-bottom: 1.5rem; object-fit: cover;">
+      <h1>Andrei Jullian Nacaya</h1>
+      <p class="subtitle">Full-Stack Web & Mobile Developer</p>
+      <p class="hero-desc">
+        Building production-ready systems — from beautiful front-ends to scalable backend architectures. Computer Science student transitioning skills from high-pressure hospitality to clean code.
+      </p>
+      <div class="btn-group">
+        <a href="projects.html" class="btn-primary">View Projects</a>
+        <a href="contact.html" class="btn-secondary">Let's Talk</a>
+      </div>
+    </section>
+  </main>
 
-                <div class="info-grid">
-                    <div class="info-block">
-                        <h3>Interests</h3>
-                        <p>Software engineering, mobile app design, cloud deployments, and gaming.</p>
-                    </div>
-                    <div class="info-block">
-                        <h3>Educational Background</h3>
-                        <p>Bachelor of Science in Computer Science — Xavier University - Ateneo de Cagayan</p>
-                    </div>
-                    <div class="info-block full-width">
-                        <h3>Goals &amp; Aspirations</h3>
-                        <p>To become a full-stack developer and software engineer capable of delivering impactful cross-platform solutions.</p>
-                    </div>
-                </div>
-            </section>
-
-            <section id="skills" class="section-container skills-section">
-                <p class="section-label">02 — SKILLS</p>
-                <h2>Technical Skills</h2>
-                <ul class="skills-list">
-                    <li><span class="skill-number">01</span><div><strong>HTML5 &amp; CSS3</strong><p>Structuring and styling responsive web and mobile interfaces.</p></div></li>
-                    <li><span class="skill-number">02</span><div><strong>JavaScript</strong><p>Implementing dynamic logic, event handling, and DOM manipulation.</p></div></li>
-                    <li><span class="skill-number">03</span><div><strong>Mobile Development</strong><p>Cross-platform mobile bundling using Apache Cordova.</p></div></li>
-                    <li><span class="skill-number">04</span><div><strong>Version Control</strong><p>Managing source code repositories using Git and GitHub.</p></div></li>
-                    <li><span class="skill-number">05</span><div><strong>UI/UX Layouts</strong><p>Creating cards, centered layouts, and responsive component designs.</p></div></li>
-                </ul>
-            </section>
-        </div>
-
-        <footer>
-            <p>&copy; 2026 Andrei Jullian Nacaya. All Rights Reserved.</p>
-        </footer>
-    </main>
-
-    <script src="cordova.js"></script>
+  <footer>
+    &copy; 2026 Andrei Jullian Nacaya. Built with Code and Coffee.
+  </footer>
 </body>
 </html>
