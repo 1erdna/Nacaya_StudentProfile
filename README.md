@@ -26,3 +26,21 @@ Styled using standard CSS Flexbox, Grid, and `@media (max-width: 640px)` media q
    ```bash
    git clone [https://github.com/1erdna/Nacaya_StudentProfile.git](https://github.com/1erdna/Nacaya_StudentProfile.git)
    cd Nacaya_StudentProfile
+
+   ## 7. Application Screenshots
+
+### Profile (Homepage)
+![Profile Page]<img width="1917" height="1020" alt="Profile" src="https://github.com/user-attachments/assets/e7382e6f-dfb9-4ccf-9f0f-35bab7b822b5" />
+
+
+### About Page
+![About Page](screenshots/about.png)
+
+### Skills Page
+![Skills Page](screenshots/skills.png)
+
+### Projects Page
+![Projects Page](screenshots/projects.png)
+
+### Contact Page
+![Contact Page](screenshots/contact.png)
