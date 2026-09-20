@@ -3,18 +3,27 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="Technical skills and development tools of Andrei Jullian Nacaya."
+  >
   <title>Skills | Andrei Jullian Nacaya</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
+
   <header>
     <div class="nav-pill">
-      <a href="index.html" class="nav-logo">AJN</a>
-      <nav>
+      <a href="index.html" class="nav-logo" aria-label="Go to profile page">
+        AJN
+      </a>
+
+      <nav aria-label="Main navigation">
         <ul>
           <li><a href="index.html">Profile</a></li>
           <li><a href="about.html">About</a></li>
-          <li><a href="skills.html" class="active">Skills</a></li>
+          <li><a href="skills.html" class="active" aria-current="page">Skills</a></li>
           <li><a href="projects.html">Projects</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
@@ -23,58 +32,188 @@
   </header>
 
   <main>
-    <h1 class="page-title">Technical Arsenal</h1>
 
-    <div class="grid-4">
-      <div class="glass-card">
-        <h3 style="margin-bottom: 0.5rem; color: var(--text-blue);">1. Frontend Development</h3>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Designing interactive UI layouts and responsive web interfaces.</p>
-        <div class="tag-cloud">
-          <span class="tag">React</span>
-          <span class="tag">TailwindCSS</span>
-          <span class="tag">JavaScript</span>
-          <span class="tag">TypeScript</span>
-          <span class="tag">HTML5/CSS3</span>
-        </div>
+    <section class="page-intro">
+      <span class="badge">Skills</span>
+
+      <h1 class="page-title">Technical Skills</h1>
+
+      <p class="page-description">
+        A growing collection of technologies, development tools, and practical
+        skills I use while building web and mobile applications.
+      </p>
+    </section>
+
+
+    <section class="skills-page" aria-labelledby="skills-heading">
+
+      <div class="section-heading">
+        <span class="badge">Development</span>
+        <h2 id="skills-heading">What I Work With</h2>
+
+        <p>
+          My current technical foundation focuses on front-end development,
+          JavaScript programming, mobile application development, version
+          control, and user-centered interface design.
+        </p>
       </div>
 
-      <div class="glass-card">
-        <h3 style="margin-bottom: 0.5rem; color: var(--text-blue);">2. Backend Systems</h3>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Building application logic, database structures, and server routes.</p>
-        <div class="tag-cloud">
-          <span class="tag">Node.js</span>
-          <span class="tag">Express</span>
-          <span class="tag">Python</span>
-          <span class="tag">REST APIs</span>
-        </div>
+
+      <div class="skill-category-grid">
+
+        <article class="skill-category-card">
+          <div class="skill-card-number">01</div>
+
+          <div class="skill-card-content">
+            <h3>Frontend Development</h3>
+
+            <p>
+              Building structured, responsive, and accessible interfaces for
+              websites and student application projects.
+            </p>
+
+            <div class="tag-cloud" aria-label="Frontend technologies">
+              <span class="tag">HTML5</span>
+              <span class="tag">CSS3</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">Responsive Design</span>
+            </div>
+          </div>
+        </article>
+
+
+        <article class="skill-category-card">
+          <div class="skill-card-number">02</div>
+
+          <div class="skill-card-content">
+            <h3>Programming &amp; Application Logic</h3>
+
+            <p>
+              Developing application behavior through programming fundamentals,
+              DOM manipulation, event handling, validation, and data processing.
+            </p>
+
+            <div class="tag-cloud" aria-label="Programming skills">
+              <span class="tag">JavaScript</span>
+              <span class="tag">Python</span>
+              <span class="tag">DOM Manipulation</span>
+              <span class="tag">Form Validation</span>
+            </div>
+          </div>
+        </article>
+
+
+        <article class="skill-category-card">
+          <div class="skill-card-number">03</div>
+
+          <div class="skill-card-content">
+            <h3>Mobile Development &amp; Storage</h3>
+
+            <p>
+              Creating cross-platform student applications and managing
+              persistent client-side profile information.
+            </p>
+
+            <div class="tag-cloud" aria-label="Mobile development technologies">
+              <span class="tag">Apache Cordova</span>
+              <span class="tag">localStorage</span>
+              <span class="tag">JSON</span>
+              <span class="tag">Mobile UI</span>
+            </div>
+          </div>
+        </article>
+
+
+        <article class="skill-category-card">
+          <div class="skill-card-number">04</div>
+
+          <div class="skill-card-content">
+            <h3>Development Workflow</h3>
+
+            <p>
+              Managing source code, feature branches, project changes, and
+              collaborative development using modern development tools.
+            </p>
+
+            <div class="tag-cloud" aria-label="Development tools">
+              <span class="tag">Git</span>
+              <span class="tag">GitHub</span>
+              <span class="tag">VS Code</span>
+              <span class="tag">PowerShell</span>
+            </div>
+          </div>
+        </article>
+
+
+        <article class="skill-category-card">
+          <div class="skill-card-number">05</div>
+
+          <div class="skill-card-content">
+            <h3>UI/UX &amp; Prototyping</h3>
+
+            <p>
+              Designing interfaces with attention to visual hierarchy,
+              usability, responsive layouts, and user-centered thinking.
+            </p>
+
+            <div class="tag-cloud" aria-label="Design skills">
+              <span class="tag">UI/UX Design</span>
+              <span class="tag">Figma</span>
+              <span class="tag">Design Thinking</span>
+              <span class="tag">Prototyping</span>
+            </div>
+          </div>
+        </article>
+
+
+        <article class="skill-category-card">
+          <div class="skill-card-number">06</div>
+
+          <div class="skill-card-content">
+            <h3>Project &amp; Problem Solving</h3>
+
+            <p>
+              Applying structured planning, debugging, testing, and iterative
+              improvement while developing academic software projects.
+            </p>
+
+            <div class="tag-cloud" aria-label="Project skills">
+              <span class="tag">Debugging</span>
+              <span class="tag">Testing</span>
+              <span class="tag">Project Planning</span>
+              <span class="tag">Problem Solving</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+
+    <section class="learning-section">
+      <div class="section-heading">
+        <span class="badge">Current Focus</span>
+        <h2>Learning Through Practice</h2>
+
+        <p>
+          I continue improving these skills by building applications,
+          troubleshooting development problems, using version control, and
+          refining projects based on testing and feedback.
+        </p>
       </div>
 
-      <div class="glass-card">
-        <h3 style="margin-bottom: 0.5rem; color: var(--text-blue);">3. Mobile & Storage</h3>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Cross-platform mobile apps and client-side storage handling.</p>
-        <div class="tag-cloud">
-          <span class="tag">React Native</span>
-          <span class="tag">Apache Cordova</span>
-          <span class="tag">Local Storage</span>
-          <span class="tag">JSON Parsing</span>
-        </div>
+      <div class="skills-action-row">
+        <a href="projects.html" class="btn-primary">View My Projects</a>
+        <a href="contact.html" class="btn-secondary">Contact Me</a>
       </div>
+    </section>
 
-      <div class="glass-card">
-        <h3 style="margin-bottom: 0.5rem; color: var(--text-blue);">4. Workflow & Tools</h3>
-        <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Project management, version tracking, and agile development.</p>
-        <div class="tag-cloud">
-          <span class="tag">Git / GitHub</span>
-          <span class="tag">Design Thinking</span>
-          <span class="tag">Agile Basics</span>
-          <span class="tag">UI/UX Prototyping</span>
-        </div>
-      </div>
-    </div>
   </main>
+
 
   <footer>
     &copy; 2026 Andrei Jullian Nacaya. Built with Code and Coffee.
   </footer>
+
 </body>
 </html>

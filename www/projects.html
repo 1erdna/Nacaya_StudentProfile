@@ -3,19 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="Selected student development projects by Andrei Jullian Nacaya."
+  >
   <title>Projects | Andrei Jullian Nacaya</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
+
+
   <header>
     <div class="nav-pill">
-      <a href="index.html" class="nav-logo">AJN</a>
-      <nav>
+      <a href="index.html" class="nav-logo" aria-label="Go to profile page">
+        AJN
+      </a>
+
+      <nav aria-label="Main navigation">
         <ul>
           <li><a href="index.html">Profile</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="skills.html">Skills</a></li>
-          <li><a href="projects.html" class="active">Projects</a></li>
+          <li><a href="projects.html" class="active" aria-current="page">Projects</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </nav>
@@ -23,69 +33,184 @@
   </header>
 
   <main>
-    <h1 class="page-title">Featured Projects</h1>
 
-    <div class="grid-2">
-      <div class="glass-card">
-        <span class="badge">Project 01</span>
-        <h2 style="font-size: 1.4rem; margin-bottom: 0.5rem;">POS System - Quench Water Refilling</h2>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
-          A Point-of-Sale and inventory monitoring terminal custom-tailored for water refilling operations. Features a clean administrative dashboard UI to track sales, container loans, and supply balances.
+
+    <section class="page-intro" aria-labelledby="projects-title">
+      <span class="badge">PROJECTS</span>
+
+      <h1 id="projects-title" class="page-title">
+        Featured Projects
+      </h1>
+
+      <p class="page-description">
+        A collection of development and design projects that reflect my
+        experience with web interfaces, mobile applications, UI/UX design,
+        and practical software development.
+      </p>
+    </section>
+
+
+
+    <section aria-labelledby="project-work-title">
+
+      <div class="section-heading">
+        <span class="badge">SELECTED WORK</span>
+
+        <h2 id="project-work-title">
+          Projects I've Worked On
+        </h2>
+
+        <p>
+          These projects represent different areas of my development journey,
+          from interface design and business applications to mobile and
+          interactive web experiences.
         </p>
-        <p style="font-size: 0.85rem; margin-bottom: 0.5rem;"><strong>Role:</strong> Lead Full-Stack Developer</p>
-        <div class="tag-cloud">
-          <span class="tag">Tailwind CSS</span>
-          <span class="tag">Vanilla JS</span>
-          <span class="tag">Local State Sync</span>
-        </div>
       </div>
 
-      <div class="glass-card">
-        <span class="badge">Project 02</span>
-        <h2 style="font-size: 1.4rem; margin-bottom: 0.5rem;">N-Insights Christmas Greeting Card</h2>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
-          A bespoke digital greeting experience transforming traditional holiday cards into an interactive web event with tactile 3D elements, typography, and sensory feedback.
-        </p>
-        <p style="font-size: 0.85rem; margin-bottom: 0.5rem;"><strong>Role:</strong> UI/UX Designer & Developer</p>
-        <div class="tag-cloud">
-          <span class="tag">HTML5 Canvas</span>
-          <span class="tag">CSS3</span>
-          <span class="tag">Web Audio API</span>
-        </div>
-      </div>
 
-      <div class="glass-card">
-        <span class="badge">Project 03</span>
-        <h2 style="font-size: 1.4rem; margin-bottom: 0.5rem;">PingPongPro Tracker</h2>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
-          An application that visualizes monthly spending and tracks financial analytics using local persistent storage engines.
-        </p>
-        <p style="font-size: 0.85rem; margin-bottom: 0.5rem;"><strong>Role:</strong> Mobile App Developer</p>
-        <div class="tag-cloud">
-          <span class="tag">React Native</span>
-          <span class="tag">TailwindCSS</span>
-          <span class="tag">Local Storage Engine</span>
-        </div>
-      </div>
+      <div class="projects-grid">
 
-      <div class="glass-card">
-        <span class="badge">Project 04</span>
-        <h2 style="font-size: 1.4rem; margin-bottom: 0.5rem;">Library Reserve</h2>
-        <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem;">
-          A corporate asset tracking assignment system built to optimize real-time asset validation maps smoothly across client networks.
-        </p>
-        <p style="font-size: 0.85rem; margin-bottom: 0.5rem;"><strong>Role:</strong> Frontend Engineer</p>
-        <div class="tag-cloud">
-          <span class="tag">TypeScript</span>
-          <span class="tag">TailwindCSS</span>
-          <span class="tag">Context State</span>
-        </div>
+        <article class="project-card">
+          <div class="project-card-top">
+            <span class="project-number">01</span>
+            <span class="project-type">Business Application</span>
+          </div>
+
+          <h3>POS System - Quench Water Refilling</h3>
+
+          <p class="project-description">
+            A Point-of-Sale and inventory monitoring terminal custom-tailored
+            for water refilling operations. The project includes an
+            administrative dashboard for tracking sales, container loans,
+            and supply balances.
+          </p>
+
+          <div class="project-role">
+            <span>ROLE</span>
+            <strong>Lead Full-Stack Developer</strong>
+          </div>
+
+          <div class="tag-cloud" aria-label="Technologies used">
+            <span class="tag">Tailwind CSS</span>
+            <span class="tag">Vanilla JS</span>
+            <span class="tag">Local State Sync</span>
+          </div>
+        </article>
+
+
+        <article class="project-card">
+          <div class="project-card-top">
+            <span class="project-number">02</span>
+            <span class="project-type">Interactive Web Experience</span>
+          </div>
+
+          <h3>N-Insights Christmas Greeting Card</h3>
+
+          <p class="project-description">
+            A digital greeting experience that transforms a traditional
+            holiday card into an interactive web presentation using visual
+            elements, typography, and interactive feedback.
+          </p>
+
+          <div class="project-role">
+            <span>ROLE</span>
+            <strong>UI/UX Designer &amp; Developer</strong>
+          </div>
+
+          <div class="tag-cloud" aria-label="Technologies used">
+            <span class="tag">HTML5 Canvas</span>
+            <span class="tag">CSS3</span>
+            <span class="tag">Web Audio API</span>
+          </div>
+        </article>
+
+
+        <article class="project-card">
+          <div class="project-card-top">
+            <span class="project-number">03</span>
+            <span class="project-type">Mobile Application</span>
+          </div>
+
+          <h3>PingPongPro Tracker</h3>
+
+          <p class="project-description">
+            An application that visualizes monthly spending and tracks
+            financial analytics using local persistent storage.
+          </p>
+
+          <div class="project-role">
+            <span>ROLE</span>
+            <strong>Mobile App Developer</strong>
+          </div>
+
+          <div class="tag-cloud" aria-label="Technologies used">
+            <span class="tag">React Native</span>
+            <span class="tag">TailwindCSS</span>
+            <span class="tag">Local Storage Engine</span>
+          </div>
+        </article>
+
+
+  
+        <article class="project-card">
+          <div class="project-card-top">
+            <span class="project-number">04</span>
+            <span class="project-type">Asset Management</span>
+          </div>
+
+          <h3>Library Reserve</h3>
+
+          <p class="project-description">
+            An asset tracking and assignment system designed to support
+            organized asset management and validation across client
+            environments.
+          </p>
+
+          <div class="project-role">
+            <span>ROLE</span>
+            <strong>Frontend Engineer</strong>
+          </div>
+
+          <div class="tag-cloud" aria-label="Technologies used">
+            <span class="tag">TypeScript</span>
+            <span class="tag">TailwindCSS</span>
+            <span class="tag">Context State</span>
+          </div>
+        </article>
+
       </div>
-    </div>
+    </section>
+
+
+    <section class="projects-focus">
+      <span class="badge">PROJECT APPROACH</span>
+
+      <h2>Building Practical Solutions</h2>
+
+      <p>
+        Each project gives me an opportunity to strengthen my understanding
+        of interface design, application logic, debugging, testing, and
+        iterative software development.
+      </p>
+
+      <p>
+        My goal is to continue building projects that solve practical
+        problems while improving usability, maintainability, and responsive
+        design.
+      </p>
+
+      <div class="page-actions">
+        <a href="skills.html" class="btn-primary">View My Skills</a>
+        <a href="contact.html" class="btn-secondary">Contact Me</a>
+      </div>
+    </section>
+
   </main>
+
 
   <footer>
     &copy; 2026 Andrei Jullian Nacaya. Built with Code and Coffee.
   </footer>
+
 </body>
 </html>

@@ -3,53 +3,175 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="description"
+    content="Contact information for Andrei Jullian Nacaya."
+  >
   <title>Contact | Andrei Jullian Nacaya</title>
   <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
+
+
   <header>
     <div class="nav-pill">
-      <a href="index.html" class="nav-logo">AJN</a>
-      <nav>
+      <a href="index.html" class="nav-logo" aria-label="Go to profile page">
+        AJN
+      </a>
+
+      <nav aria-label="Main navigation">
         <ul>
           <li><a href="index.html">Profile</a></li>
           <li><a href="about.html">About</a></li>
           <li><a href="skills.html">Skills</a></li>
           <li><a href="projects.html">Projects</a></li>
-          <li><a href="contact.html" class="active">Contact</a></li>
+          <li>
+            <a href="contact.html" class="active" aria-current="page">
+              Contact
+            </a>
+          </li>
         </ul>
       </nav>
     </div>
   </header>
 
+
   <main>
-    <h1 class="page-title">Get In Touch</h1>
 
-    <div class="grid-4">
-      <a href="mailto:anacaya331@gmail.com" class="glass-card contact-card">
-        <h3>Email</h3>
-        <p>anacaya331@gmail.com</p>
-      </a>
 
-      <div class="glass-card contact-card">
-        <h3>Phone</h3>
-        <p>+63 995 972 9976</p>
+    <section class="page-intro" aria-labelledby="contact-title">
+      <span class="badge">CONTACT</span>
+
+      <h1 id="contact-title" class="page-title">
+        Get In Touch
+      </h1>
+
+      <p class="page-description">
+        Feel free to reach out through email, phone, or GitHub. I'm always
+        interested in learning, collaborating, and connecting with others
+        in technology and software development.
+      </p>
+    </section>
+
+
+
+    <section aria-labelledby="contact-info-title">
+
+      <div class="section-heading">
+        <span class="badge">CONTACT INFORMATION</span>
+
+        <h2 id="contact-info-title">
+          Let's Connect
+        </h2>
+
+        <p>
+          Choose the contact method that works best for you.
+        </p>
       </div>
 
-      <a href="https://github.com/1erdna" target="_blank" class="glass-card contact-card">
-        <h3>GitHub</h3>
-        <p>github.com/1erdna</p>
-      </a>
 
-      <div class="glass-card contact-card">
-        <h3>Location</h3>
-        <p>Cagayan de Oro City</p>
+      <div class="contact-grid">
+
+
+        <a
+          href="mailto:anacaya331@gmail.com"
+          class="contact-item"
+          aria-label="Send an email to Andrei Jullian Nacaya"
+        >
+          <div class="contact-number">01</div>
+
+          <div class="contact-content">
+            <span class="contact-label">EMAIL</span>
+            <h3>Email Me</h3>
+            <p>anacaya331@gmail.com</p>
+          </div>
+
+          <span class="contact-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+
+
+
+        <a
+          href="tel:+639959729976"
+          class="contact-item"
+          aria-label="Call Andrei Jullian Nacaya"
+        >
+          <div class="contact-number">02</div>
+
+          <div class="contact-content">
+            <span class="contact-label">PHONE</span>
+            <h3>Call Me</h3>
+            <p>+63 995 972 9976</p>
+          </div>
+
+          <span class="contact-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+
+
+        <a
+          href="https://github.com/1erdna"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="contact-item"
+          aria-label="Visit Andrei Jullian Nacaya's GitHub profile"
+        >
+          <div class="contact-number">03</div>
+
+          <div class="contact-content">
+            <span class="contact-label">GITHUB</span>
+            <h3>View My GitHub</h3>
+            <p>github.com/1erdna</p>
+          </div>
+
+          <span class="contact-arrow" aria-hidden="true">&rarr;</span>
+        </a>
+
+
+        <div class="contact-item contact-location">
+          <div class="contact-number">04</div>
+
+          <div class="contact-content">
+            <span class="contact-label">LOCATION</span>
+            <h3>Based In</h3>
+            <p>Cagayan de Oro City</p>
+          </div>
+        </div>
+
       </div>
-    </div>
+    </section>
+
+
+  
+    <section class="contact-summary">
+      <span class="badge">DEVELOPER PROFILE</span>
+
+      <h2>Let's Build and Learn</h2>
+
+      <p>
+        I'm continuing to develop my skills in web development, mobile
+        application development, UI/UX design, and software engineering.
+        I'm open to opportunities that allow me to learn, collaborate,
+        and gain practical development experience.
+      </p>
+
+      <div class="page-actions">
+        <a href="projects.html" class="btn-primary">
+          View My Projects
+        </a>
+
+        <a href="skills.html" class="btn-secondary">
+          View My Skills
+        </a>
+      </div>
+    </section>
+
   </main>
+
 
   <footer>
     &copy; 2026 Andrei Jullian Nacaya. Built with Code and Coffee.
   </footer>
+
 </body>
 </html>
