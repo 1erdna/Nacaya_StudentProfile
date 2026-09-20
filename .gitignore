@@ -1,0 +1,23 @@
+# Node.js dependencies
+node_modules/
+
+# Cordova generated platforms
+platforms/
+
+# Cordova plugins
+plugins/
+
+# Android/Gradle generated files
+.gradle/
+
+# IDE files
+.idea/
+.vscode/
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
