@@ -308,35 +308,53 @@ npx cordova run android
 
 ## 12. Application Screenshots
 
+The following screenshots show the Activity 5 Student Profile running as an Android application through Apache Cordova.
+
 ### Student Profile
 
-Activity 5 screenshot to be added after final testing.
+The main Profile screen displays the student's saved profile information and provides access to the Edit Profile feature.
+
+<img width="297" height="647" alt="image" src="https://github.com/user-attachments/assets/63fb1608-84bf-4471-8ed1-3efcdef5622c" />
+
 
 ### Edit Profile
 
-Activity 5 screenshot to be added after final testing.
+The Edit Profile interface allows the user to modify Full Name, Course, Year Level, About Me, and Skills.
 
-### Updated Profile
+<img width="307" height="652" alt="image" src="https://github.com/user-attachments/assets/9cc99b1a-18ad-4fa7-93c0-4b955dc1c481" />
 
-Activity 5 screenshot to be added after final testing.
+
+The lower section of the form provides the Skills field together with the Cancel and Save Changes controls.
+
+<img width="292" height="652" alt="image" src="https://github.com/user-attachments/assets/bd947416-788b-42a2-9224-6f6c52b7c2be" />
+
 
 ### About Page
 
-Activity 5 screenshot to be added after final testing.
+The About page presents the student's academic background, learning activities, interests, and development goals.
+
+<img width="301" height="651" alt="image" src="https://github.com/user-attachments/assets/ffde1105-4b1f-4f19-be55-1fcfe0076d12" />
+
 
 ### Skills Page
 
-Activity 5 screenshot to be added after final testing.
+The Skills page organizes the student's technical and development skills into responsive categories.
+
+<img width="296" height="666" alt="image" src="https://github.com/user-attachments/assets/927c1854-cd51-4459-84a2-caecf4aef917" />
+
 
 ### Projects Page
 
-Activity 5 screenshot to be added after final testing.
+The Projects page presents selected development projects, descriptions, roles, and technologies used.
+
+<img width="301" height="648" alt="image" src="https://github.com/user-attachments/assets/a0e7ec58-a3b2-4a68-8412-8f81145ee5a6" />
+
 
 ### Contact Page
 
-Activity 5 screenshot to be added after final testing.
+The Contact page provides the student's email, phone, GitHub profile, and location.
 
----
+<img width="301" height="655" alt="image" src="https://github.com/user-attachments/assets/0ea53635-8f0f-499e-b0bf-2e8974e3bf93" />
 
 ## 13. Activity 5 Features
 
