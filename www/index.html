@@ -1,45 +1,333 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Andrei Jullian Nacaya | Profile</title>
-  <link rel="stylesheet" href="css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="description"
+        content="Student profile of Andrei Jullian Nacaya"
+    >
+
+    <title>Andrei Jullian Nacaya | Profile</title>
+
+    <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
-  <header>
+
+<header class="site-header">
     <div class="nav-pill">
-      <a href="index.html" class="nav-logo">AJN</a>
-      <nav>
-        <ul>
-          <li><a href="index.html" class="active">Profile</a></li>
-          <li><a href="about.html">About</a></li>
-          <li><a href="skills.html">Skills</a></li>
-          <li><a href="projects.html">Projects</a></li>
-          <li><a href="contact.html">Contact</a></li>
-        </ul>
-      </nav>
+
+        <a href="index.html" class="nav-logo" aria-label="Go to profile page">
+            AJN
+        </a>
+
+        <nav aria-label="Main navigation">
+            <ul>
+                <li>
+                    <a href="index.html" class="active" aria-current="page">
+                        Profile
+                    </a>
+                </li>
+
+                <li>
+                    <a href="about.html">About</a>
+                </li>
+
+                <li>
+                    <a href="skills.html">Skills</a>
+                </li>
+
+                <li>
+                    <a href="projects.html">Projects</a>
+                </li>
+
+                <li>
+                    <a href="contact.html">Contact</a>
+                </li>
+            </ul>
+        </nav>
+
     </div>
-  </header>
+</header>
 
-  <main>
-    <section class="hero">
-      <div class="hero-glow"></div>
-      <img src="https://github.com/1erdna.png" alt="Andrei Jullian Nacaya" style="width: 130px; height: 130px; border-radius: 50%; border: 3px solid #2563eb; margin-bottom: 1.5rem; object-fit: cover;">
-      <h1>Andrei Jullian Nacaya</h1>
-      <p class="subtitle">Full-Stack Web & Mobile Developer</p>
-      <p class="hero-desc">
-        Building production-ready systems — from beautiful front-ends to scalable backend architectures. Computer Science student transitioning skills from high-pressure hospitality to clean code.
-      </p>
-      <div class="btn-group">
-        <a href="projects.html" class="btn-primary">View Projects</a>
-        <a href="contact.html" class="btn-secondary">Let's Talk</a>
-      </div>
+
+<main>
+
+    <section
+        id="profileView"
+        class="profile-section"
+        aria-labelledby="profileName"
+    >
+
+        <div class="profile-card">
+
+            <div class="profile-image-wrapper">
+                <img
+                    src="img/pink.jpg"
+                    alt="Profile photo of Andrei Jullian Nacaya"
+                    class="profile-image"
+                >
+            </div>
+
+            <div class="profile-content">
+
+                <span class="badge">Student Profile</span>
+
+                <h1 id="profileName">
+                    Andrei Jullian Nacaya
+                </h1>
+
+                <p id="profileCourse" class="profile-course">
+                    BS Computer Science
+                </p>
+
+                <p id="profileYearLevel" class="profile-year">
+                    2nd Year
+                </p>
+
+                <div class="profile-divider"></div>
+
+                <section class="profile-detail">
+                    <h2>About Me</h2>
+
+                    <p id="profileAbout">
+                        I am a Computer Science student interested in
+                        software development, responsive web applications,
+                        mobile development, and modern technology.
+                    </p>
+                </section>
+
+                <section class="profile-detail">
+                    <h2>Skills</h2>
+
+                    <div
+                        id="profileSkills"
+                        class="profile-skills"
+                        aria-label="Technical skills"
+                    >
+                    </div>
+                </section>
+
+                <div class="profile-actions">
+
+                    <button
+                        type="button"
+                        id="editProfileButton"
+                        class="btn-primary"
+                    >
+                        Edit Profile
+                    </button>
+
+                    <a href="projects.html" class="btn-secondary">
+                        View Projects
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </section>
-  </main>
 
-  <footer>
-    &copy; 2026 Andrei Jullian Nacaya. Built with Code and Coffee.
-  </footer>
+
+    <section
+        id="editProfileSection"
+        class="edit-profile-section"
+        aria-labelledby="editProfileHeading"
+        hidden
+    >
+
+        <div class="edit-card">
+
+            <div class="edit-header">
+
+                <div>
+                    <span class="badge">Activity 5</span>
+
+                    <h2 id="editProfileHeading">
+                        Edit Profile
+                    </h2>
+
+                    <p>
+                        Update your student information below.
+                    </p>
+                </div>
+
+            </div>
+
+
+            <form id="editProfileForm" novalidate>
+
+                <div class="form-group">
+
+                    <label for="fullName">
+                        Full Name
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="fullName"
+                        name="fullName"
+                        autocomplete="name"
+                        maxlength="80"
+                        aria-describedby="fullNameError"
+                    >
+
+                    <p
+                        id="fullNameError"
+                        class="error-message"
+                        aria-live="polite"
+                    ></p>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="course">
+                        Course
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="course"
+                        name="course"
+                        maxlength="100"
+                        aria-describedby="courseError"
+                    >
+
+                    <p
+                        id="courseError"
+                        class="error-message"
+                        aria-live="polite"
+                    ></p>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="yearLevel">
+                        Year Level
+                        <span class="required">*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="yearLevel"
+                        name="yearLevel"
+                        placeholder="Example: 2nd Year"
+                        maxlength="30"
+                        aria-describedby="yearLevelError"
+                    >
+
+                    <p
+                        id="yearLevelError"
+                        class="error-message"
+                        aria-live="polite"
+                    ></p>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="about">
+                        About Me
+                        <span class="required">*</span>
+                    </label>
+
+                    <textarea
+                        id="about"
+                        name="about"
+                        rows="5"
+                        maxlength="600"
+                        aria-describedby="aboutError"
+                    ></textarea>
+
+                    <p
+                        id="aboutError"
+                        class="error-message"
+                        aria-live="polite"
+                    ></p>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="skills">
+                        Skills
+                    </label>
+
+                    <textarea
+                        id="skills"
+                        name="skills"
+                        rows="3"
+                        maxlength="300"
+                        placeholder="HTML, CSS, JavaScript, Git, Apache Cordova"
+                        aria-describedby="skillsHelp"
+                    ></textarea>
+
+                    <p id="skillsHelp" class="form-help">
+                        Separate each skill using a comma.
+                    </p>
+
+                </div>
+
+
+                <div
+                    id="formStatus"
+                    class="form-status"
+                    aria-live="polite"
+                ></div>
+
+
+                <div class="form-actions">
+
+                    <button
+                        type="button"
+                        id="cancelEditButton"
+                        class="btn-secondary button-control"
+                    >
+                        Cancel
+                    </button>
+
+                    <button
+                        type="submit"
+                        class="btn-primary button-control"
+                    >
+                        Save Changes
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </section>
+
+</main>
+
+
+<footer class="site-footer">
+
+    <p>
+        &copy; 2026 Andrei Jullian Nacaya.
+        Built with Code and Coffee.
+    </p>
+
+</footer>
+
+
+<script src="cordova.js"></script>
+<script src="js/index.js"></script>
+
 </body>
 </html>
