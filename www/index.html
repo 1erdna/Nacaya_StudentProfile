@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -25,6 +26,7 @@
 
         <nav aria-label="Main navigation">
             <ul>
+
                 <li>
                     <a href="index.html" class="active" aria-current="page">
                         Profile
@@ -32,20 +34,29 @@
                 </li>
 
                 <li>
-                    <a href="about.html">About</a>
+                    <a href="about.html">
+                        About
+                    </a>
                 </li>
 
                 <li>
-                    <a href="skills.html">Skills</a>
+                    <a href="skills.html">
+                        Skills
+                    </a>
                 </li>
 
                 <li>
-                    <a href="projects.html">Projects</a>
+                    <a href="projects.html">
+                        Projects
+                    </a>
                 </li>
 
                 <li>
-                    <a href="contact.html">Contact</a>
+                    <a href="contact.html">
+                        Contact
+                    </a>
                 </li>
+
             </ul>
         </nav>
 
@@ -55,6 +66,8 @@
 
 <main>
 
+    <!-- PROFILE VIEW -->
+
     <section
         id="profileView"
         class="profile-section"
@@ -63,17 +76,35 @@
 
         <div class="profile-card">
 
+            <!-- PROFILE IMAGE -->
+
             <div class="profile-image-wrapper">
+
                 <img
+                    id="profileImage"
                     src="img/pink.jpg"
                     alt="Profile photo of Andrei Jullian Nacaya"
                     class="profile-image"
                 >
+
+                <button
+                    type="button"
+                    id="changeProfilePictureButton"
+                    class="btn-secondary"
+                >
+                    Change Profile Picture
+                </button>
+
             </div>
+
+
+            <!-- PROFILE INFORMATION -->
 
             <div class="profile-content">
 
-                <span class="badge">Student Profile</span>
+                <span class="badge">
+                    Student Profile
+                </span>
 
                 <h1 id="profileName">
                     Andrei Jullian Nacaya
@@ -84,23 +115,36 @@
                 </p>
 
                 <p id="profileYearLevel" class="profile-year">
-                    3nd Year
+                    3rd Year
                 </p>
 
                 <div class="profile-divider"></div>
 
+
+                <!-- ABOUT -->
+
                 <section class="profile-detail">
-                    <h2>About Me</h2>
+
+                    <h2>
+                        About Me
+                    </h2>
 
                     <p id="profileAbout">
-                        I am a Information Technology student interested in
+                        I am an Information Technology student interested in
                         software development, responsive web applications,
                         mobile development, and modern technology.
                     </p>
+
                 </section>
 
+
+                <!-- SKILLS -->
+
                 <section class="profile-detail">
-                    <h2>Skills</h2>
+
+                    <h2>
+                        Skills
+                    </h2>
 
                     <div
                         id="profileSkills"
@@ -108,7 +152,11 @@
                         aria-label="Technical skills"
                     >
                     </div>
+
                 </section>
+
+
+                <!-- PROFILE ACTIONS -->
 
                 <div class="profile-actions">
 
@@ -120,7 +168,10 @@
                         Edit Profile
                     </button>
 
-                    <a href="projects.html" class="btn-secondary">
+                    <a
+                        href="projects.html"
+                        class="btn-secondary"
+                    >
                         View Projects
                     </a>
 
@@ -132,6 +183,9 @@
 
     </section>
 
+
+
+    <!-- EDIT PROFILE SECTION -->
 
     <section
         id="editProfileSection"
@@ -145,7 +199,10 @@
             <div class="edit-header">
 
                 <div>
-                    <span class="badge">Activity 5</span>
+
+                    <span class="badge">
+                        Activity 5
+                    </span>
 
                     <h2 id="editProfileHeading">
                         Edit Profile
@@ -154,6 +211,7 @@
                     <p>
                         Update your student information below.
                     </p>
+
                 </div>
 
             </div>
@@ -161,11 +219,19 @@
 
             <form id="editProfileForm" novalidate>
 
+
+                <!-- FULL NAME -->
+
                 <div class="form-group">
 
                     <label for="fullName">
+
                         Full Name
-                        <span class="required">*</span>
+
+                        <span class="required">
+                            *
+                        </span>
+
                     </label>
 
                     <input
@@ -186,11 +252,19 @@
                 </div>
 
 
+
+                <!-- COURSE -->
+
                 <div class="form-group">
 
                     <label for="course">
+
                         Course
-                        <span class="required">*</span>
+
+                        <span class="required">
+                            *
+                        </span>
+
                     </label>
 
                     <input
@@ -210,18 +284,26 @@
                 </div>
 
 
+
+                <!-- YEAR LEVEL -->
+
                 <div class="form-group">
 
                     <label for="yearLevel">
+
                         Year Level
-                        <span class="required">*</span>
+
+                        <span class="required">
+                            *
+                        </span>
+
                     </label>
 
                     <input
                         type="text"
                         id="yearLevel"
                         name="yearLevel"
-                        placeholder="Example: 2nd Year"
+                        placeholder="Example: 3rd Year"
                         maxlength="30"
                         aria-describedby="yearLevelError"
                     >
@@ -235,11 +317,19 @@
                 </div>
 
 
+
+                <!-- ABOUT -->
+
                 <div class="form-group">
 
                     <label for="about">
+
                         About Me
-                        <span class="required">*</span>
+
+                        <span class="required">
+                            *
+                        </span>
+
                     </label>
 
                     <textarea
@@ -259,6 +349,9 @@
                 </div>
 
 
+
+                <!-- SKILLS -->
+
                 <div class="form-group">
 
                     <label for="skills">
@@ -274,12 +367,18 @@
                         aria-describedby="skillsHelp"
                     ></textarea>
 
-                    <p id="skillsHelp" class="form-help">
+                    <p
+                        id="skillsHelp"
+                        class="form-help"
+                    >
                         Separate each skill using a comma.
                     </p>
 
                 </div>
 
+
+
+                <!-- FORM STATUS -->
 
                 <div
                     id="formStatus"
@@ -287,6 +386,9 @@
                     aria-live="polite"
                 ></div>
 
+
+
+                <!-- FORM BUTTONS -->
 
                 <div class="form-actions">
 
@@ -316,6 +418,9 @@
 </main>
 
 
+
+<!-- FOOTER -->
+
 <footer class="site-footer">
 
     <p>
@@ -326,8 +431,15 @@
 </footer>
 
 
+
+<!-- CORDOVA -->
+
 <script src="cordova.js"></script>
+
+<!-- APPLICATION JAVASCRIPT -->
+
 <script src="js/index.js"></script>
 
 </body>
+
 </html>
