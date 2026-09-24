@@ -1,16 +1,44 @@
-# Nacaya Student Profile - Activity 5
+# Nacaya Student Profile - Activity 6
 
 ## 1. Project Description
 
-The Nacaya Student Profile is a responsive multi-page student portfolio application developed using HTML5, CSS3, vanilla JavaScript, and Apache Cordova.
+The Nacaya Student Profile is a responsive multi-page student portfolio application developed using HTML5, CSS3, vanilla JavaScript, Apache Cordova, and localStorage.
 
-Activity 5 continues the Student Profile application developed in Activity 4 while adding a functional profile editing system. The application allows the user to edit personal profile information, validate the entered data, save the information using localStorage, and automatically display the latest saved profile information.
+Activity 6 extends the Student Profile application developed in Activities 4 and 5 by integrating the device camera into the application. The user can open the device camera directly from the Profile page, capture a new profile picture, confirm the captured image, and automatically display it as the current profile picture.
 
-The project contains five main pages: Profile, About, Skills, Projects, and Contact. The interface is designed to work across desktop, tablet, and mobile screen sizes while maintaining a consistent student developer portfolio design.
+The captured profile picture is stored locally so that it remains available even after the application is closed and reopened.
+
+The project contains five main pages:
+
+- Profile
+- About
+- Skills
+- Projects
+- Contact
+
+The application is designed to work across desktop, tablet, and mobile screen sizes while maintaining a consistent student developer portfolio design.
 
 ---
 
-## 2. Application Pages
+## 2. Activity 6 - Camera Integration
+
+Activity 6 introduces camera functionality to the Student Profile application using Apache Cordova.
+
+The Profile page now contains a **Change Profile Picture** control that allows the user to:
+
+1. Open the device camera.
+2. Capture a new image.
+3. Review the captured image.
+4. Confirm or cancel the captured image.
+5. Use the confirmed image as the new profile picture.
+6. Replace an existing captured profile picture.
+7. Preserve the selected profile picture between application sessions.
+
+The camera feature is implemented using the Apache Cordova Camera plugin.
+
+---
+
+## 3. Application Pages
 
 ### Profile - `index.html`
 
@@ -21,9 +49,14 @@ The main page displays the student's profile information, including:
 - Year Level
 - About Me
 - Skills
-- Profile photo
+- Profile Picture
 
-The Profile page also contains the **Edit Profile** feature introduced in Activity 5.
+The Profile page contains both:
+
+- **Change Profile Picture**
+- **Edit Profile**
+
+The Change Profile Picture feature was introduced in Activity 6, while the Edit Profile feature from Activity 5 remains available.
 
 ### About - `about.html`
 
@@ -37,14 +70,7 @@ The About page presents information about the student's:
 
 ### Skills - `skills.html`
 
-The Skills page organizes technical and development skills into clear categories, including:
-
-- Frontend Development
-- Programming and Application Logic
-- Mobile Development and Storage
-- Development Workflow
-- UI/UX and Prototyping
-- Project and Problem Solving
+The Skills page organizes technical and development skills into clear categories.
 
 ### Projects - `projects.html`
 
@@ -61,9 +87,100 @@ The Contact page provides available contact information, including:
 
 ---
 
-## 3. Profile Editing
+## 4. Camera Functionality
 
-Activity 5 introduces an interactive **Edit Profile** system on the Profile page.
+The Activity 6 camera feature allows the user to update the profile picture directly from the Android application.
+
+### Open Camera
+
+Selecting **Change Profile Picture** requests access to the device camera and opens the camera interface.
+
+### Capture Photo
+
+The user can capture a photo using the Android camera interface.
+
+After taking the photo, the user is provided with controls to confirm the image, retake it, or cancel the operation.
+
+### Confirm Photo
+
+When the captured image is confirmed:
+
+1. The camera returns the image to the Cordova application.
+2. JavaScript receives the image data.
+3. The image is assigned to the profile image element.
+4. The new profile picture is displayed immediately.
+5. The image is stored locally for persistence.
+
+### Retake / Replace Photo
+
+The user can select **Change Profile Picture** again at any time.
+
+A newly confirmed image replaces the previously saved profile picture.
+
+### Cancel Camera
+
+If the user cancels the camera operation, the existing profile picture remains unchanged.
+
+---
+
+## 5. Camera Image Handling
+
+The application uses the Cordova Camera plugin to retrieve the captured image.
+
+The captured image is returned to JavaScript as image data that can be displayed directly by the profile image element.
+
+The application validates the returned camera data before updating the profile picture.
+
+If valid image data is received, the application:
+
+1. Updates the profile image.
+2. Saves the image locally.
+3. Displays the new image immediately.
+
+This allows the camera feature to operate without requiring an external image server or database.
+
+---
+
+## 6. Profile Picture Persistence
+
+The application uses `localStorage` to preserve the selected profile picture.
+
+After a successful camera capture, the profile picture is stored locally.
+
+When the application starts again, JavaScript checks whether a previously saved profile picture exists.
+
+If a saved image is available, it is automatically restored and displayed.
+
+This means the profile picture remains available after:
+
+- Closing the application
+- Restarting the application
+- Reopening the Student Profile
+
+No external database is required for profile picture persistence.
+
+---
+
+## 7. Camera Error Handling
+
+The application includes error handling for camera operations.
+
+The camera feature handles situations such as:
+
+- Camera permission being denied
+- Camera operation being cancelled
+- Camera failing to return valid image data
+- Camera access being unavailable
+
+If the camera operation fails, the application provides feedback rather than replacing the existing profile picture with invalid data.
+
+The existing profile information and previously saved profile picture remain protected when a camera operation is unsuccessful.
+
+---
+
+## 8. Profile Editing
+
+Activity 5 introduced an interactive **Edit Profile** system that remains available in Activity 6.
 
 The following information can be edited:
 
@@ -72,10 +189,6 @@ The following information can be edited:
 - Year Level
 - About Me
 - Skills
-
-### Edit Profile
-
-Selecting the **Edit Profile** button opens the profile editing interface and automatically fills the form with the currently displayed profile information.
 
 ### Save Changes
 
@@ -91,81 +204,59 @@ When **Save Changes** is selected:
 
 ### Cancel
 
-Selecting **Cancel**:
-
-1. Discards unsaved form changes.
-2. Keeps the previously saved profile information.
-3. Returns the user to the profile view.
-4. Does not modify the saved localStorage data.
+Selecting **Cancel** discards unsaved changes and keeps the previously saved profile information.
 
 ---
 
-## 4. JavaScript Functionality
+## 9. JavaScript Functionality
 
-Vanilla JavaScript is used to provide the interactive functionality required for Activity 5.
+Vanilla JavaScript provides the interactive functionality of the application.
 
-The JavaScript handles:
+JavaScript handles:
 
+- Cordova device-ready initialization
+- Camera initialization
+- Opening the camera
+- Receiving captured image data
+- Updating the profile picture
+- Saving the profile picture
+- Restoring the saved profile picture
+- Camera error handling
 - Loading profile information
 - Reading saved localStorage data
-- Displaying default profile information when no saved data exists
 - Opening the Edit Profile interface
 - Populating the edit form
-- Retrieving form values
 - Validating required fields
-- Displaying validation messages
 - Saving valid profile information
 - Dynamically updating the Profile page
 - Cancelling unsaved changes
 - Rendering skills
 - Maintaining profile information between application sessions
 
-The profile information is handled as a single profile data structure rather than storing unrelated values throughout the application.
-
 ---
 
-## 5. Local Data Storage
+## 10. Local Data Storage
 
-The application uses the browser/Cordova WebView `localStorage` API to provide persistent client-side profile storage.
+The application uses the browser/Cordova WebView `localStorage` API to provide persistent client-side storage.
 
-The stored profile information includes:
+Stored information includes:
 
 - Full Name
 - Course
 - Year Level
 - About Me
 - Skills
+- Profile Picture
 
-When the application starts, JavaScript checks localStorage for previously saved profile information.
+When the application starts, JavaScript checks localStorage for previously saved information.
 
 If saved information exists, it is automatically loaded and displayed.
 
-If no saved profile exists, the application displays the default student information included with the project.
-
-After a successful profile update, the latest information remains available after refreshing, closing, and reopening the application.
-
-No external database is required for the Activity 5 profile editing feature.
+If no saved information exists, the application uses the default information included with the project.
 
 ---
 
-## 6. Validation
-
-The Edit Profile form validates required information before saving.
-
-The following fields cannot be empty:
-
-- Full Name
-- Course
-- Year Level
-- About Me
-
-If required information is missing, the application prevents the profile from being saved and provides validation feedback to the user.
-
-Skills are handled separately and may be updated through the profile editing interface.
-
----
-
-## 7. Responsive Design
+## 11. Responsive Design
 
 The application uses responsive CSS techniques including:
 
@@ -176,221 +267,65 @@ The application uses responsive CSS techniques including:
 - Flexible cards and containers
 - Responsive navigation
 - Mobile-friendly forms and buttons
+- Responsive profile image presentation
 
-The interface is designed to remain usable across common screen sizes, including:
+The interface is designed to remain usable across:
 
 - Desktop
 - Laptop
 - Tablet
 - Mobile
 
-The layout adapts to smaller screens to reduce horizontal overflow, cramped content, and unusable controls.
+The camera functionality is primarily intended for the Android Cordova application.
 
 ---
 
-## 8. UI/UX and Accessibility
+## 12. UI/UX and Accessibility
 
-The Activity 5 interface improves the visual consistency and usability of the original Activity 4 project.
+The application maintains a consistent dark student-portfolio interface.
 
 The design includes:
 
-- Consistent dark visual theme
 - Clear visual hierarchy
+- Responsive layouts
+- Consistent navigation
 - Reusable card components
 - Consistent buttons
-- Clear form labels
-- Visible validation feedback
+- Visible form validation
 - Active navigation states
-- Responsive layouts
 - Keyboard-accessible form controls
 - Focus states for interactive elements
 - Meaningful profile image alternative text
 - Semantic HTML where appropriate
-
-The interface remains intentionally lightweight and appropriate for a university student development project.
+- Clearly visible Change Profile Picture control
 
 ---
 
-## 9. Technologies Used
+## 13. Technologies Used
 
 - HTML5
 - CSS3
 - JavaScript
 - localStorage
 - Apache Cordova
+- Cordova Camera Plugin
+- Android
+- Android Studio
+- Android Emulator
 - Git
 - GitHub
 - Visual Studio Code
+- Node.js
+- npm
 - PowerShell
 
-No frontend JavaScript framework is required for the Activity 5 profile editing functionality.
-
 ---
 
-## 10. Git and GitHub Workflow
+## 14. Cordova Camera Plugin
 
-Activity 5 development is performed using the feature branch:
+Activity 6 uses the Cordova Camera plugin.
 
-```text
-activity-5-profile-editing
-```
-
-The development workflow is:
-
-```text
-main
-  |
-  +-- activity-5-profile-editing
-          |
-          +-- Activity 5 development and testing
-          |
-          +-- merge into main after final testing
-```
-
-This workflow preserves the previous Activity 4 version while Activity 5 functionality is developed and tested separately.
-
----
-
-## 11. How to Run
-
-### Requirements
-
-Before building the Android application, install the required development tools:
-
-- Node.js and npm
-- Apache Cordova
-- Java Development Kit (JDK)
-- Android SDK
-- Required Android SDK platform and build tools
-
-### Clone the Repository
+The plugin can be installed using:
 
 ```bash
-git clone https://github.com/1erdna/Nacaya_StudentProfile.git
-cd Nacaya_StudentProfile
-```
-
-### Install Project Dependencies
-
-```bash
-npm install
-```
-
-### Check Cordova Requirements
-
-```bash
-npx cordova requirements android
-```
-
-### Prepare the Android Project
-
-```bash
-npx cordova prepare android
-```
-
-### Build for Android
-
-```bash
-npx cordova build android
-```
-
-### Run on Android
-
-With an Android emulator or compatible Android device configured:
-
-```bash
-npx cordova run android
-```
-
-> Note: A successful Android build requires compatible versions of the Android SDK, Gradle, Android Gradle Plugin, and JDK. The web application files inside the `www` directory can still be developed and tested independently while Android build-environment issues are being configured.
-
----
-
-## 12. Application Screenshots
-
-The following screenshots show the Activity 5 Student Profile running as an Android application through Apache Cordova.
-
-### Student Profile
-
-The main Profile screen displays the student's saved profile information and provides access to the Edit Profile feature.
-
-<img width="297" height="647" alt="image" src="https://github.com/user-attachments/assets/63fb1608-84bf-4471-8ed1-3efcdef5622c" />
-
-
-### Edit Profile
-
-The Edit Profile interface allows the user to modify Full Name, Course, Year Level, About Me, and Skills.
-
-<img width="307" height="652" alt="image" src="https://github.com/user-attachments/assets/9cc99b1a-18ad-4fa7-93c0-4b955dc1c481" />
-
-
-The lower section of the form provides the Skills field together with the Cancel and Save Changes controls.
-
-<img width="292" height="652" alt="image" src="https://github.com/user-attachments/assets/bd947416-788b-42a2-9224-6f6c52b7c2be" />
-
-
-### About Page
-
-The About page presents the student's academic background, learning activities, interests, and development goals.
-
-<img width="301" height="651" alt="image" src="https://github.com/user-attachments/assets/ffde1105-4b1f-4f19-be55-1fcfe0076d12" />
-
-
-### Skills Page
-
-The Skills page organizes the student's technical and development skills into responsive categories.
-
-<img width="296" height="666" alt="image" src="https://github.com/user-attachments/assets/927c1854-cd51-4459-84a2-caecf4aef917" />
-
-
-### Projects Page
-
-The Projects page presents selected development projects, descriptions, roles, and technologies used.
-
-<img width="301" height="648" alt="image" src="https://github.com/user-attachments/assets/a0e7ec58-a3b2-4a68-8412-8f81145ee5a6" />
-
-
-### Contact Page
-
-The Contact page provides the student's email, phone, GitHub profile, and location.
-
-<img width="301" height="655" alt="image" src="https://github.com/user-attachments/assets/0ea53635-8f0f-499e-b0bf-2e8974e3bf93" />
-
-## 13. Activity 5 Features
-
-Activity 5 extends the original Student Profile application with:
-
-- Editable student profile information
-- Full Name editing
-- Course editing
-- Year Level editing
-- About Me editing
-- Skills editing
-- Save functionality
-- Cancel functionality
-- Form validation
-- Dynamic profile updates
-- localStorage persistence
-- Default profile fallback
-- Responsive Edit Profile interface
-- Improved responsive portfolio pages
-- Improved accessibility and visual consistency
-
----
-
-## Author
-
-**Andrei Jullian Nacaya**
-BS Information Technology
-Xavier University - Ateneo de Cagayan
-
-GitHub: `1erdna`
-
----
-
-## Academic Project
-
-This repository contains the Student Profile application developed as a university programming activity.
-
-**Activity 4:** Multi-page Student Profile
-**Activity 5:** Profile Editing, JavaScript Functionality, Validation, and Local Data Storage
+cordova plugin add cordova-plugin-camera
