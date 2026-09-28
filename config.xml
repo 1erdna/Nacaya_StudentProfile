@@ -10,28 +10,46 @@
     <name>StudentProfile</name>
 
     <description>
-        Activity 6 Student Profile with Cordova Camera Integration
+        Activity 7 Student Profile with Authentication and Database Integration
     </description>
 
     <author>
         Andrei Jullian Nacaya
     </author>
 
-    <content src="index.html" />
+    <!-- Activity 7 starts on the login page -->
+    <content src="login.html" />
 
-    <!-- Allow application navigation -->
+    <!-- Allow application network access -->
     <access origin="*" />
+
+    <!-- Allow HTTP and HTTPS navigation -->
+    <allow-navigation href="http://*/*" />
+    <allow-navigation href="https://*/*" />
 
     <!-- Allow normal web intents -->
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
 
-    <!-- Allow local file access used by device features -->
+    <!-- Allow local file access used by Cordova -->
     <allow-intent href="file:///*" />
 
-    <!-- Android -->
+    <!-- =====================================================
+         ANDROID CONFIGURATION
+         ===================================================== -->
+
     <platform name="android">
 
+        <!-- Gradle version required by our Cordova Android setup -->
+        <preference
+            name="GradleVersion"
+            value="8.14.2"
+        />
+
+        <!--
+            Allows Cordova to operate in insecure file mode
+            during local Activity 7 development/testing.
+        -->
         <preference
             name="AndroidInsecureFileModeEnabled"
             value="true"

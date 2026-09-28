@@ -3,7 +3,11 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <meta
         name="description"
@@ -12,433 +16,517 @@
 
     <title>Andrei Jullian Nacaya | Profile</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
 </head>
 
 <body>
 
-<header class="site-header">
-    <div class="nav-pill">
+    <!-- =====================================================
+         HEADER
+         ===================================================== -->
 
-        <a href="index.html" class="nav-logo" aria-label="Go to profile page">
-            AJN
-        </a>
+    <header class="site-header">
 
-        <nav aria-label="Main navigation">
-            <ul>
+        <div class="nav-pill">
 
-                <li>
-                    <a href="index.html" class="active" aria-current="page">
-                        Profile
-                    </a>
-                </li>
+            <a
+                href="index.html"
+                class="nav-logo"
+                aria-label="Go to profile page"
+            >
+                AJN
+            </a>
 
-                <li>
-                    <a href="about.html">
-                        About
-                    </a>
-                </li>
+            <nav aria-label="Main navigation">
 
-                <li>
-                    <a href="skills.html">
-                        Skills
-                    </a>
-                </li>
+                <ul>
 
-                <li>
-                    <a href="projects.html">
-                        Projects
-                    </a>
-                </li>
+                    <li>
+                        <a
+                            href="index.html"
+                            class="active"
+                            aria-current="page"
+                        >
+                            Profile
+                        </a>
+                    </li>
 
-                <li>
-                    <a href="contact.html">
-                        Contact
-                    </a>
-                </li>
+                    <li>
+                        <a href="about.html">
+                            About
+                        </a>
+                    </li>
 
-            </ul>
-        </nav>
+                    <li>
+                        <a href="skills.html">
+                            Skills
+                        </a>
+                    </li>
 
-    </div>
-</header>
+                    <li>
+                        <a href="projects.html">
+                            Projects
+                        </a>
+                    </li>
 
+                    <li>
+                        <a href="contact.html">
+                            Contact
+                        </a>
+                    </li>
 
-<main>
+                </ul>
 
-    <!-- PROFILE VIEW -->
-
-    <section
-        id="profileView"
-        class="profile-section"
-        aria-labelledby="profileName"
-    >
-
-        <div class="profile-card">
-
-            <!-- PROFILE IMAGE -->
-
-            <div class="profile-image-wrapper">
-
-                <img
-                    id="profileImage"
-                    src="img/pink.jpg"
-                    alt="Profile photo of Andrei Jullian Nacaya"
-                    class="profile-image"
-                >
-
-                <button
-                    type="button"
-                    id="changeProfilePictureButton"
-                    class="btn-secondary"
-                >
-                    Change Profile Picture
-                </button>
-
-            </div>
-
-
-            <!-- PROFILE INFORMATION -->
-
-            <div class="profile-content">
-
-                <span class="badge">
-                    Student Profile
-                </span>
-
-                <h1 id="profileName">
-                    Andrei Jullian Nacaya
-                </h1>
-
-                <p id="profileCourse" class="profile-course">
-                    BS Information Technology
-                </p>
-
-                <p id="profileYearLevel" class="profile-year">
-                    3rd Year
-                </p>
-
-                <div class="profile-divider"></div>
-
-
-                <!-- ABOUT -->
-
-                <section class="profile-detail">
-
-                    <h2>
-                        About Me
-                    </h2>
-
-                    <p id="profileAbout">
-                        I am an Information Technology student interested in
-                        software development, responsive web applications,
-                        mobile development, and modern technology.
-                    </p>
-
-                </section>
-
-
-                <!-- SKILLS -->
-
-                <section class="profile-detail">
-
-                    <h2>
-                        Skills
-                    </h2>
-
-                    <div
-                        id="profileSkills"
-                        class="profile-skills"
-                        aria-label="Technical skills"
-                    >
-                    </div>
-
-                </section>
-
-
-                <!-- PROFILE ACTIONS -->
-
-                <div class="profile-actions">
-
-                    <button
-                        type="button"
-                        id="editProfileButton"
-                        class="btn-primary"
-                    >
-                        Edit Profile
-                    </button>
-
-                    <a
-                        href="projects.html"
-                        class="btn-secondary"
-                    >
-                        View Projects
-                    </a>
-
-                </div>
-
-            </div>
+            </nav>
 
         </div>
 
-    </section>
+    </header>
 
 
+    <!-- =====================================================
+         MAIN CONTENT
+         ===================================================== -->
 
-    <!-- EDIT PROFILE SECTION -->
+    <main>
 
-    <section
-        id="editProfileSection"
-        class="edit-profile-section"
-        aria-labelledby="editProfileHeading"
-        hidden
-    >
 
-        <div class="edit-card">
+        <!-- =================================================
+             PROFILE VIEW
+             ================================================= -->
 
-            <div class="edit-header">
+        <section
+            id="profileView"
+            class="profile-section"
+            aria-labelledby="profileName"
+        >
 
-                <div>
+            <div class="profile-card">
+
+
+                <!-- =========================================
+                     PROFILE IMAGE
+                     ========================================= -->
+
+                <div class="profile-image-wrapper">
+
+                    <img
+                        id="profileImage"
+                        src="img/pink.jpg"
+                        alt="Profile photo of Andrei Jullian Nacaya"
+                        class="profile-image"
+                    >
+
+                </div>
+
+
+                <!-- =========================================
+                     PROFILE INFORMATION
+                     ========================================= -->
+
+                <div class="profile-content">
 
                     <span class="badge">
-                        Activity 5
+                        Student Profile
                     </span>
 
-                    <h2 id="editProfileHeading">
-                        Edit Profile
-                    </h2>
 
-                    <p>
-                        Update your student information below.
+                    <h1 id="profileName">
+                        Andrei Jullian Nacaya
+                    </h1>
+
+
+                    <p
+                        id="profileCourse"
+                        class="profile-course"
+                    >
+                        BS Information Technology
                     </p>
+
+
+                    <p
+                        id="profileYearLevel"
+                        class="profile-year"
+                    >
+                        3rd Year
+                    </p>
+
+
+                    <div class="profile-divider"></div>
+
+
+                    <!-- =====================================
+                         ABOUT
+                         ===================================== -->
+
+                    <section class="profile-detail">
+
+                        <h2>
+                            About Me
+                        </h2>
+
+                        <p id="profileAbout">
+                            I am an Information Technology student interested in
+                            software development, responsive web applications,
+                            mobile development, and modern technology.
+                        </p>
+
+                    </section>
+
+
+                    <!-- =====================================
+                         SKILLS
+                         ===================================== -->
+
+                    <section class="profile-detail">
+
+                        <h2>
+                            Skills
+                        </h2>
+
+                        <div
+                            id="profileSkills"
+                            class="profile-skills"
+                            aria-label="Technical skills"
+                        >
+                        </div>
+
+                    </section>
+
+
+                    <!-- =====================================
+                         PROFILE ACTIONS
+                         ===================================== -->
+
+                    <div class="profile-actions">
+
+                        <button
+                            type="button"
+                            id="editProfileButton"
+                            class="btn-primary button-control"
+                        >
+                            Edit Profile
+                        </button>
+
+                        <button
+                            type="button"
+                            id="changeProfilePictureButton"
+                            class="btn-secondary button-control"
+                        >
+                            Change Profile Picture
+                        </button>
+
+                        <a
+                            href="projects.html"
+                            class="btn-secondary"
+                        >
+                            View Projects
+                        </a>
+
+                    </div>
 
                 </div>
 
             </div>
 
+        </section>
 
-            <form id="editProfileForm" novalidate>
 
 
-                <!-- FULL NAME -->
+        <!-- =================================================
+             EDIT PROFILE SECTION
+             ================================================= -->
 
-                <div class="form-group">
+        <section
+            id="editProfileSection"
+            class="edit-profile-section"
+            aria-labelledby="editProfileHeading"
+            hidden
+        >
 
-                    <label for="fullName">
+            <div class="edit-card">
 
-                        Full Name
 
-                        <span class="required">
-                            *
+                <!-- =========================================
+                     EDIT HEADER
+                     ========================================= -->
+
+                <div class="edit-header">
+
+                    <div>
+
+                        <span class="badge">
+                            Activity 5
                         </span>
 
-                    </label>
+                        <h2 id="editProfileHeading">
+                            Edit Profile
+                        </h2>
 
-                    <input
-                        type="text"
-                        id="fullName"
-                        name="fullName"
-                        autocomplete="name"
-                        maxlength="80"
-                        aria-describedby="fullNameError"
-                    >
+                        <p>
+                            Update your student information below.
+                        </p>
 
-                    <p
-                        id="fullNameError"
-                        class="error-message"
+                    </div>
+
+                </div>
+
+
+                <!-- =========================================
+                     EDIT PROFILE FORM
+                     ========================================= -->
+
+                <form
+                    id="editProfileForm"
+                    novalidate
+                >
+
+
+                    <!-- =====================================
+                         FULL NAME
+                         ===================================== -->
+
+                    <div class="form-group">
+
+                        <label for="fullName">
+
+                            Full Name
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="fullName"
+                            name="fullName"
+                            autocomplete="name"
+                            maxlength="80"
+                            aria-describedby="fullNameError"
+                        >
+
+                        <p
+                            id="fullNameError"
+                            class="error-message"
+                            aria-live="polite"
+                        ></p>
+
+                    </div>
+
+
+
+                    <!-- =====================================
+                         COURSE
+                         ===================================== -->
+
+                    <div class="form-group">
+
+                        <label for="course">
+
+                            Course
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="course"
+                            name="course"
+                            maxlength="100"
+                            aria-describedby="courseError"
+                        >
+
+                        <p
+                            id="courseError"
+                            class="error-message"
+                            aria-live="polite"
+                        ></p>
+
+                    </div>
+
+
+
+                    <!-- =====================================
+                         YEAR LEVEL
+                         ===================================== -->
+
+                    <div class="form-group">
+
+                        <label for="yearLevel">
+
+                            Year Level
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+                        <input
+                            type="text"
+                            id="yearLevel"
+                            name="yearLevel"
+                            placeholder="Example: 3rd Year"
+                            maxlength="30"
+                            aria-describedby="yearLevelError"
+                        >
+
+                        <p
+                            id="yearLevelError"
+                            class="error-message"
+                            aria-live="polite"
+                        ></p>
+
+                    </div>
+
+
+
+                    <!-- =====================================
+                         ABOUT
+                         ===================================== -->
+
+                    <div class="form-group">
+
+                        <label for="about">
+
+                            About Me
+
+                            <span class="required">
+                                *
+                            </span>
+
+                        </label>
+
+                        <textarea
+                            id="about"
+                            name="about"
+                            rows="5"
+                            maxlength="600"
+                            aria-describedby="aboutError"
+                        ></textarea>
+
+                        <p
+                            id="aboutError"
+                            class="error-message"
+                            aria-live="polite"
+                        ></p>
+
+                    </div>
+
+
+
+                    <!-- =====================================
+                         SKILLS
+                         ===================================== -->
+
+                    <div class="form-group">
+
+                        <label for="skills">
+                            Skills
+                        </label>
+
+                        <textarea
+                            id="skills"
+                            name="skills"
+                            rows="3"
+                            maxlength="300"
+                            placeholder="HTML, CSS, JavaScript, Git, Apache Cordova"
+                            aria-describedby="skillsHelp"
+                        ></textarea>
+
+                        <p
+                            id="skillsHelp"
+                            class="form-help"
+                        >
+                            Separate each skill using a comma.
+                        </p>
+
+                    </div>
+
+
+
+                    <!-- =====================================
+                         FORM STATUS
+                         ===================================== -->
+
+                    <div
+                        id="formStatus"
+                        class="form-status"
                         aria-live="polite"
-                    ></p>
+                    ></div>
 
-                </div>
 
 
+                    <!-- =====================================
+                         FORM BUTTONS
+                         ===================================== -->
 
-                <!-- COURSE -->
+                    <div class="form-actions">
 
-                <div class="form-group">
+                        <button
+                            type="button"
+                            id="cancelEditButton"
+                            class="btn-secondary button-control"
+                        >
+                            Cancel
+                        </button>
 
-                    <label for="course">
 
-                        Course
+                        <button
+                            type="submit"
+                            class="btn-primary button-control"
+                        >
+                            Save Changes
+                        </button>
 
-                        <span class="required">
-                            *
-                        </span>
+                    </div>
 
-                    </label>
 
-                    <input
-                        type="text"
-                        id="course"
-                        name="course"
-                        maxlength="100"
-                        aria-describedby="courseError"
-                    >
+                </form>
 
-                    <p
-                        id="courseError"
-                        class="error-message"
-                        aria-live="polite"
-                    ></p>
+            </div>
 
-                </div>
+        </section>
 
+    </main>
 
 
-                <!-- YEAR LEVEL -->
 
-                <div class="form-group">
+    <!-- =====================================================
+         FOOTER
+         ===================================================== -->
 
-                    <label for="yearLevel">
+    <footer class="site-footer">
 
-                        Year Level
+        <p>
+            &copy; 2026 Andrei Jullian Nacaya.
+            Built with Code and Coffee.
+        </p>
 
-                        <span class="required">
-                            *
-                        </span>
+    </footer>
 
-                    </label>
 
-                    <input
-                        type="text"
-                        id="yearLevel"
-                        name="yearLevel"
-                        placeholder="Example: 3rd Year"
-                        maxlength="30"
-                        aria-describedby="yearLevelError"
-                    >
 
-                    <p
-                        id="yearLevelError"
-                        class="error-message"
-                        aria-live="polite"
-                    ></p>
+    <!-- =====================================================
+         CORDOVA
+         ===================================================== -->
 
-                </div>
+    <script src="cordova.js"></script>
 
 
+    <!-- =====================================================
+         APPLICATION JAVASCRIPT
+         ===================================================== -->
 
-                <!-- ABOUT -->
-
-                <div class="form-group">
-
-                    <label for="about">
-
-                        About Me
-
-                        <span class="required">
-                            *
-                        </span>
-
-                    </label>
-
-                    <textarea
-                        id="about"
-                        name="about"
-                        rows="5"
-                        maxlength="600"
-                        aria-describedby="aboutError"
-                    ></textarea>
-
-                    <p
-                        id="aboutError"
-                        class="error-message"
-                        aria-live="polite"
-                    ></p>
-
-                </div>
-
-
-
-                <!-- SKILLS -->
-
-                <div class="form-group">
-
-                    <label for="skills">
-                        Skills
-                    </label>
-
-                    <textarea
-                        id="skills"
-                        name="skills"
-                        rows="3"
-                        maxlength="300"
-                        placeholder="HTML, CSS, JavaScript, Git, Apache Cordova"
-                        aria-describedby="skillsHelp"
-                    ></textarea>
-
-                    <p
-                        id="skillsHelp"
-                        class="form-help"
-                    >
-                        Separate each skill using a comma.
-                    </p>
-
-                </div>
-
-
-
-                <!-- FORM STATUS -->
-
-                <div
-                    id="formStatus"
-                    class="form-status"
-                    aria-live="polite"
-                ></div>
-
-
-
-                <!-- FORM BUTTONS -->
-
-                <div class="form-actions">
-
-                    <button
-                        type="button"
-                        id="cancelEditButton"
-                        class="btn-secondary button-control"
-                    >
-                        Cancel
-                    </button>
-
-                    <button
-                        type="submit"
-                        class="btn-primary button-control"
-                    >
-                        Save Changes
-                    </button>
-
-                </div>
-
-            </form>
-
-        </div>
-
-    </section>
-
-</main>
-
-
-
-<!-- FOOTER -->
-
-<footer class="site-footer">
-
-    <p>
-        &copy; 2026 Andrei Jullian Nacaya.
-        Built with Code and Coffee.
-    </p>
-
-</footer>
-
-
-
-<!-- CORDOVA -->
-
-<script src="cordova.js"></script>
-
-<!-- APPLICATION JAVASCRIPT -->
-
-<script src="js/index.js"></script>
+    <script src="js/index.js"></script>
 
 </body>
 

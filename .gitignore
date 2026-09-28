@@ -21,3 +21,18 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+
+# Environment variables / secrets
+.env
+.env.*
+!.env.example
+backend/.env
+
+# Local backup/debug files
+www/js/*BACKUP*.js
+www/js/*backup*.js
+www/js/*debug*.js
+
+# Build outputs
+*.apk
+*.aab

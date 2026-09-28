@@ -1,0 +1,118 @@
+/* Activity 7 login styles */
+.login-page {
+    min-height: 100vh;
+}
+
+.login-main {
+    width: min(92%, 460px);
+    min-height: 100vh;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem 0;
+}
+
+.login-card {
+    width: 100%;
+    padding: clamp(1.5rem, 5vw, 2.75rem);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015));
+    box-shadow: var(--shadow);
+}
+
+.login-brand {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.login-logo {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(96, 165, 250, 0.35);
+    border-radius: 22px;
+    color: var(--primary-light);
+    background: rgba(37, 99, 235, 0.15);
+    font-size: 1.25rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    box-shadow: 0 0 35px rgba(37, 99, 235, 0.18);
+}
+
+.login-brand h1 {
+    margin-bottom: 0.5rem;
+    font-size: clamp(2rem, 7vw, 2.8rem);
+    line-height: 1.1;
+    letter-spacing: -0.035em;
+}
+
+.login-subtitle {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+}
+
+.login-form,
+.login-button {
+    width: 100%;
+}
+
+.login-button {
+    margin-top: 0.75rem;
+    border-radius: var(--radius-sm);
+}
+
+.login-button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.form-status.success {
+    color: #4ade80;
+}
+
+.login-footer {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    text-align: center;
+}
+
+.login-footer p {
+    margin-bottom: 0.2rem;
+    color: var(--text);
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.login-footer small {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+}
+
+@media (max-width: 480px) {
+    .login-main {
+        width: 92%;
+        padding: 1rem 0;
+    }
+
+    .login-card {
+        padding: 1.4rem;
+        border-radius: var(--radius-md);
+    }
+
+    .login-logo {
+        width: 62px;
+        height: 62px;
+        border-radius: 18px;
+    }
+
+    .login-brand {
+        margin-bottom: 1.5rem;
+    }
+}
