@@ -2,15 +2,17 @@
   "name": "com.student.profile",
   "displayName": "StudentProfile",
   "version": "1.0.0",
-  "description": "A sample Apache Cordova application that responds to the deviceready event.",
+  "description": "Activity 7 Student Profile Cordova app with JWT authentication and MySQL integration",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "check": "node --check www/js/index.js && node --check www/js/login.js",
+    "android:prepare": "cordova prepare android",
+    "android:build": "cordova build android"
   },
   "keywords": [
     "ecosystem:cordova"
   ],
-  "author": "Apache Cordova Team",
+  "author": "Andrei Jullian Nacaya",
   "license": "Apache-2.0",
   "devDependencies": {
     "cordova-android": "^15.1.0",

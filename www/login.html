@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Student Profile Login"
+    >
+
+    <title>Student Profile | Login</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/activity7.css">
+</head>
+
+<body class="login-page">
+
+    <main class="login-main">
+
+        <section
+            class="login-card"
+            aria-labelledby="loginHeading"
+        >
+
+            <div class="login-brand">
+
+                <div
+                    class="login-logo"
+                    aria-hidden="true"
+                >
+                    AJN
+                </div>
+
+                <span class="badge">
+                    ACTIVITY 7
+                </span>
+
+                <h1 id="loginHeading">
+                    Student Login
+                </h1>
+
+                <p class="login-subtitle">
+                    Sign in to access your student profile.
+                </p>
+
+            </div>
+
+            <form
+                id="loginForm"
+                class="login-form"
+                novalidate
+            >
+
+                <div class="form-group">
+                    <label for="loginUsername">Username or Email</label>
+                    <input
+                        type="text"
+                        id="loginUsername"
+                        name="username"
+                        autocomplete="username"
+                        placeholder="Enter your username"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input
+                        type="password"
+                        id="loginPassword"
+                        name="password"
+                        autocomplete="current-password"
+                        placeholder="Enter your password"
+                        required
+                    >
+                </div>
+
+                <div
+                    id="loginStatus"
+                    class="form-status"
+                    aria-live="polite"
+                ></div>
+
+                <button
+                    type="submit"
+                    id="loginButton"
+                    class="btn-primary login-button"
+                >
+                    Login
+                </button>
+
+            </form>
+
+            <div class="login-footer">
+                <p>Nacaya Student Profile</p>
+                <small>Secure Database Authentication</small>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="cordova.js"></script>
+    <script src="js/login.js"></script>
+
+</body>
+</html>

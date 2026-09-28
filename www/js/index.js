@@ -1,1174 +1,438 @@
 "use strict";
 
-/*
- * Activity 5 & Activity 6 - Student Profile
- * Andrei Jullian Nacaya
- *
- * Handles:
- * - Profile loading
- * - Profile rendering
- * - Edit Profile
- * - Validation
- * - Save
- * - Cancel
- * - localStorage persistence
- * - Cordova camera integration
- * - Profile picture capture
- * - Profile picture persistence
- * - Camera cancellation
- * - Camera error handling
- */
+const API_BASE_URL = "http://10.0.2.2:3000";
+const TOKEN_KEY = "authToken";
+let currentProfile = null;
 
+document.addEventListener("DOMContentLoaded", () => {
+    initializeApplication().catch((error) => {
+        console.error("Application initialization error:", error);
+        showProfileError("Unable to initialize the application.");
+    });
+    initializeCameraFeature();
+});
 
-/* =========================================================
-   STORAGE
-   ========================================================= */
+document.addEventListener("deviceready", initializeCameraFeature, false);
 
-const STORAGE_KEY = "studentProfile";
-const PROFILE_IMAGE_KEY = "studentProfileImage";
+async function initializeApplication() {
+    if (!getAuthToken()) {
+        redirectToLogin();
+        return;
+    }
 
-
-/* =========================================================
-   DEFAULT PROFILE
-   ========================================================= */
-
-const defaultProfile = {
-    fullName: "Andrei Jullian Nacaya",
-    course: "BS Computer Science",
-    yearLevel: "2nd Year",
-    about:
-        "I am a Computer Science student interested in software development, responsive web applications, mobile development, and modern technology.",
-    skills: [
-        "HTML5",
-        "CSS3",
-        "JavaScript",
-        "Git",
-        "GitHub",
-        "Apache Cordova"
-    ]
-};
-
-
-/* =========================================================
-   APPLICATION INITIALIZATION
-   ========================================================= */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    initializeApplication
-);
-
-document.addEventListener(
-    "deviceready",
-    initializeCameraFeature,
-    false
-);
-
-
-/*
- * Initialize Activity 5 profile features.
- */
-
-function initializeApplication() {
-
-    const profile = loadProfile();
-
-    renderProfile(profile);
-
-    /*
-     * Load the saved profile picture here as well.
-     * This allows the picture to appear as soon as the page loads.
-     */
-
-    loadSavedProfileImage();
-
-
-    const editProfileButton =
-        document.getElementById("editProfileButton");
-
-    const cancelEditButton =
-        document.getElementById("cancelEditButton");
-
-    const editProfileForm =
-        document.getElementById("editProfileForm");
-
+    const editProfileButton = document.getElementById("editProfileButton");
+    const cancelEditButton = document.getElementById("cancelEditButton");
+    const editProfileForm = document.getElementById("editProfileForm");
 
     if (editProfileButton) {
-
-        editProfileButton.addEventListener(
-            "click",
-            openEditProfile
-        );
+        editProfileButton.addEventListener("click", openEditProfile);
     }
-
-
     if (cancelEditButton) {
-
-        cancelEditButton.addEventListener(
-            "click",
-            cancelEdit
-        );
+        cancelEditButton.addEventListener("click", cancelEdit);
     }
-
-
     if (editProfileForm) {
-
-        editProfileForm.addEventListener(
-            "submit",
-            handleProfileSave
-        );
+        editProfileForm.addEventListener("submit", handleProfileSave);
     }
+
+    await loadProfileFromDatabase();
 }
 
+function getAuthToken() {
+    return localStorage.getItem(TOKEN_KEY);
+}
 
-/* =========================================================
-   ACTIVITY 5 - PROFILE DATA
-   ========================================================= */
+function redirectToLogin() {
+    window.location.href = "login.html";
+}
 
+function logout() {
+    localStorage.removeItem(TOKEN_KEY);
+    localStorage.removeItem("authenticatedUser");
+    redirectToLogin();
+}
 
-/*
- * Load profile information.
- */
+function handleUnauthorizedResponse(response) {
+    if (response.status === 401 || response.status === 403) {
+        logout();
+        return true;
+    }
+    return false;
+}
 
-function loadProfile() {
+async function loadProfileFromDatabase() {
+    const token = getAuthToken();
+    if (!token) {
+        redirectToLogin();
+        return;
+    }
 
     try {
+        const response = await fetch(`${API_BASE_URL}/api/profile`, {
+            method: "GET",
+            headers: { Authorization: `Bearer ${token}` }
+        });
 
-        const savedProfile =
-            localStorage.getItem(STORAGE_KEY);
+        if (handleUnauthorizedResponse(response)) return;
 
-
-        if (!savedProfile) {
-
-            return copyDefaultProfile();
+        const data = await response.json();
+        if (!response.ok || !data.success) {
+            throw new Error(data.message || "Unable to retrieve profile.");
         }
 
-
-        const parsedProfile =
-            JSON.parse(savedProfile);
-
-
-        return {
-
-            fullName:
-                parsedProfile.fullName ||
-                defaultProfile.fullName,
-
-            course:
-                parsedProfile.course ||
-                defaultProfile.course,
-
-            yearLevel:
-                parsedProfile.yearLevel ||
-                defaultProfile.yearLevel,
-
-            about:
-                parsedProfile.about ||
-                defaultProfile.about,
-
-            skills:
-                Array.isArray(parsedProfile.skills)
-                    ? parsedProfile.skills
-                    : defaultProfile.skills.slice()
-        };
-
-
+        currentProfile = normalizeProfile(data.profile);
+        renderProfile(currentProfile);
     } catch (error) {
-
-        console.error(
-            "Unable to load profile:",
-            error
+        console.error("Profile retrieval error:", error);
+        showProfileError(
+            "Unable to load your profile from the database. " +
+            "Please make sure the backend server is running."
         );
-
-        return copyDefaultProfile();
     }
 }
 
-
-/*
- * Return a safe copy of the default profile.
- */
-
-function copyDefaultProfile() {
-
+function normalizeProfile(profile = {}) {
     return {
-
-        fullName:
-            defaultProfile.fullName,
-
-        course:
-            defaultProfile.course,
-
-        yearLevel:
-            defaultProfile.yearLevel,
-
-        about:
-            defaultProfile.about,
-
-        skills:
-            defaultProfile.skills.slice()
+        userId: profile.userId || null,
+        profileId: profile.profileId || null,
+        username: profile.username || "",
+        email: profile.email || "",
+        fullName: profile.fullName || "",
+        course: profile.course || "",
+        yearLevel: profile.yearLevel || "",
+        about: profile.about || "",
+        skills: Array.isArray(profile.skills) ? profile.skills : [],
+        profileImage: profile.profileImage || null,
+        createdAt: profile.createdAt || null,
+        updatedAt: profile.updatedAt || null
     };
 }
-
-
-/*
- * Save profile information.
- */
-
-function saveProfile(profile) {
-
-    try {
-
-        localStorage.setItem(
-            STORAGE_KEY,
-            JSON.stringify(profile)
-        );
-
-        return true;
-
-
-    } catch (error) {
-
-        console.error(
-            "Unable to save profile:",
-            error
-        );
-
-        return false;
-    }
-}
-
-
-/*
- * Render profile.
- */
 
 function renderProfile(profile) {
-
-    const profileName =
-        document.getElementById("profileName");
-
-    const profileCourse =
-        document.getElementById("profileCourse");
-
-    const profileYearLevel =
-        document.getElementById("profileYearLevel");
-
-    const profileAbout =
-        document.getElementById("profileAbout");
-
-
-    if (profileName) {
-
-        profileName.textContent =
-            profile.fullName;
-    }
-
-
-    if (profileCourse) {
-
-        profileCourse.textContent =
-            profile.course;
-    }
-
-
-    if (profileYearLevel) {
-
-        profileYearLevel.textContent =
-            profile.yearLevel;
-    }
-
-
-    if (profileAbout) {
-
-        profileAbout.textContent =
-            profile.about;
-    }
-
-
+    setText("profileName", profile.fullName);
+    setText("profileCourse", profile.course);
+    setText("profileYearLevel", profile.yearLevel);
+    setText("profileAbout", profile.about);
     renderSkills(profile.skills);
+
+    const image = document.getElementById("profileImage");
+    if (image && profile.profileImage) {
+        image.src = profile.profileImage;
+    }
 }
 
-
-/*
- * Render skills.
- */
+function setText(id, value) {
+    const element = document.getElementById(id);
+    if (element) element.textContent = value || "";
+}
 
 function renderSkills(skills) {
+    const container = document.getElementById("profileSkills");
+    if (!container) return;
 
-    const skillsContainer =
-        document.getElementById("profileSkills");
+    container.replaceChildren();
 
-
-    if (!skillsContainer) {
-
+    if (!Array.isArray(skills) || skills.length === 0) {
+        const empty = document.createElement("p");
+        empty.className = "empty-skills";
+        empty.textContent = "No skills have been added yet.";
+        container.appendChild(empty);
         return;
     }
 
-
-    skillsContainer.replaceChildren();
-
-
-    if (
-        !Array.isArray(skills) ||
-        skills.length === 0
-    ) {
-
-        const emptyMessage =
-            document.createElement("p");
-
-        emptyMessage.className =
-            "empty-skills";
-
-        emptyMessage.textContent =
-            "No skills have been added yet.";
-
-        skillsContainer.appendChild(
-            emptyMessage
-        );
-
-        return;
-    }
-
-
-    skills.forEach(function (skill) {
-
-        const skillTag =
-            document.createElement("span");
-
-        skillTag.className =
-            "skill-tag";
-
-        skillTag.textContent =
-            skill;
-
-        skillsContainer.appendChild(
-            skillTag
-        );
+    skills.forEach((skill) => {
+        const tag = document.createElement("span");
+        tag.className = "skill-tag";
+        tag.textContent = skill;
+        container.appendChild(tag);
     });
 }
 
-
-/* =========================================================
-   ACTIVITY 5 - EDIT PROFILE
-   ========================================================= */
-
-
-/*
- * Open Edit Profile.
- */
+function showProfileError(message) {
+    setText("profileAbout", message);
+}
 
 function openEditProfile() {
-
     clearValidationErrors();
 
-
-    const currentProfile =
-        loadProfile();
-
-
-    populateEditForm(
-        currentProfile
-    );
-
-
-    const profileView =
-        document.getElementById("profileView");
-
-    const editSection =
-        document.getElementById(
-            "editProfileSection"
-        );
-
-
-    if (profileView) {
-
-        profileView.hidden = true;
+    if (!currentProfile) {
+        alert("Your profile is still loading. Please try again.");
+        return;
     }
 
+    populateEditForm(currentProfile);
 
-    if (editSection) {
+    const profileView = document.getElementById("profileView");
+    const editSection = document.getElementById("editProfileSection");
+    if (profileView) profileView.hidden = true;
+    if (editSection) editSection.hidden = false;
 
-        editSection.hidden = false;
-    }
-
-
-    const fullNameField =
-        document.getElementById("fullName");
-
-
-    if (fullNameField) {
-
-        fullNameField.focus();
-    }
-
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
+    const fullName = document.getElementById("fullName");
+    if (fullName) fullName.focus();
+    window.scrollTo({ top: 0, behavior: "smooth" });
 }
-
-
-/*
- * Populate Edit Profile form.
- */
 
 function populateEditForm(profile) {
-
-    document.getElementById("fullName").value =
-        profile.fullName;
-
-    document.getElementById("course").value =
-        profile.course;
-
-    document.getElementById("yearLevel").value =
-        profile.yearLevel;
-
-    document.getElementById("about").value =
-        profile.about;
-
-    document.getElementById("skills").value =
-        profile.skills.join(", ");
+    document.getElementById("fullName").value = profile.fullName;
+    document.getElementById("course").value = profile.course;
+    document.getElementById("yearLevel").value = profile.yearLevel;
+    document.getElementById("about").value = profile.about;
+    document.getElementById("skills").value = profile.skills.join(", ");
 }
-
-
-/*
- * Save edited profile.
- */
-
-function handleProfileSave(event) {
-
-    event.preventDefault();
-
-    clearValidationErrors();
-
-
-    const profile =
-        getProfileFromForm();
-
-
-    const validationResult =
-        validateProfile(profile);
-
-
-    if (!validationResult.isValid) {
-
-        displayValidationErrors(
-            validationResult.errors
-        );
-
-        return;
-    }
-
-
-    const wasSaved =
-        saveProfile(profile);
-
-
-    if (!wasSaved) {
-
-        const formStatus =
-            document.getElementById(
-                "formStatus"
-            );
-
-
-        if (formStatus) {
-
-            formStatus.textContent =
-                "Your profile could not be saved. Please try again.";
-
-            formStatus.classList.add(
-                "error"
-            );
-        }
-
-        return;
-    }
-
-
-    renderProfile(profile);
-
-    closeEditProfile();
-}
-
-
-/*
- * Get values from Edit Profile form.
- */
 
 function getProfileFromForm() {
-
-    const fullName =
-        document
-            .getElementById("fullName")
-            .value
-            .trim();
-
-
-    const course =
-        document
-            .getElementById("course")
-            .value
-            .trim();
-
-
-    const yearLevel =
-        document
-            .getElementById("yearLevel")
-            .value
-            .trim();
-
-
-    const about =
-        document
-            .getElementById("about")
-            .value
-            .trim();
-
-
-    const skillsText =
-        document
-            .getElementById("skills")
-            .value
-            .trim();
-
-
-    const skills =
-        skillsText
-
-            ? skillsText
-                .split(",")
-                .map(function (skill) {
-
-                    return skill.trim();
-                })
-                .filter(function (skill) {
-
-                    return skill.length > 0;
-                })
-
-            : [];
-
-
+    const skillsText = document.getElementById("skills").value.trim();
     return {
-
-        fullName: fullName,
-        course: course,
-        yearLevel: yearLevel,
-        about: about,
-        skills: skills
+        fullName: document.getElementById("fullName").value.trim(),
+        course: document.getElementById("course").value.trim(),
+        yearLevel: document.getElementById("yearLevel").value.trim(),
+        about: document.getElementById("about").value.trim(),
+        skills: skillsText
+            ? skillsText.split(",").map((skill) => skill.trim()).filter(Boolean)
+            : []
     };
 }
-
-
-/*
- * Validate profile.
- */
 
 function validateProfile(profile) {
-
     const errors = {};
-
-
-    if (!profile.fullName) {
-
-        errors.fullName =
-            "Please enter your full name.";
-    }
-
-
-    if (!profile.course) {
-
-        errors.course =
-            "Please enter your course or program.";
-    }
-
-
-    if (!profile.yearLevel) {
-
-        errors.yearLevel =
-            "Please enter your year level.";
-    }
-
-
-    if (!profile.about) {
-
-        errors.about =
-            "Please enter information about yourself.";
-    }
-
-
-    return {
-
-        isValid:
-            Object.keys(errors).length === 0,
-
-        errors: errors
-    };
+    if (!profile.fullName) errors.fullName = "Please enter your full name.";
+    if (!profile.course) errors.course = "Please enter your course or program.";
+    if (!profile.yearLevel) errors.yearLevel = "Please enter your year level.";
+    if (!profile.about) errors.about = "Please enter information about yourself.";
+    return { isValid: Object.keys(errors).length === 0, errors };
 }
-
-
-/*
- * Display validation errors.
- */
-
-function displayValidationErrors(errors) {
-
-    const fieldIds = [
-        "fullName",
-        "course",
-        "yearLevel",
-        "about"
-    ];
-
-
-    let firstInvalidField = null;
-
-
-    fieldIds.forEach(
-        function (fieldId) {
-
-            if (!errors[fieldId]) {
-
-                return;
-            }
-
-
-            const field =
-                document.getElementById(
-                    fieldId
-                );
-
-
-            const errorElement =
-                document.getElementById(
-                    fieldId + "Error"
-                );
-
-
-            if (errorElement) {
-
-                errorElement.textContent =
-                    errors[fieldId];
-            }
-
-
-            if (field) {
-
-                field.classList.add(
-                    "input-error"
-                );
-
-                field.setAttribute(
-                    "aria-invalid",
-                    "true"
-                );
-
-
-                if (!firstInvalidField) {
-
-                    firstInvalidField =
-                        field;
-                }
-            }
-        }
-    );
-
-
-    const formStatus =
-        document.getElementById(
-            "formStatus"
-        );
-
-
-    if (formStatus) {
-
-        formStatus.textContent =
-            "Please correct the highlighted fields.";
-
-        formStatus.classList.add(
-            "error"
-        );
-    }
-
-
-    if (firstInvalidField) {
-
-        firstInvalidField.focus();
-    }
-}
-
-
-/*
- * Clear validation errors.
- */
 
 function clearValidationErrors() {
-
-    const fields = [
-        "fullName",
-        "course",
-        "yearLevel",
-        "about"
-    ];
-
-
-    fields.forEach(
-        function (fieldId) {
-
-            const field =
-                document.getElementById(
-                    fieldId
-                );
-
-
-            const errorElement =
-                document.getElementById(
-                    fieldId + "Error"
-                );
-
-
-            if (field) {
-
-                field.classList.remove(
-                    "input-error"
-                );
-
-                field.removeAttribute(
-                    "aria-invalid"
-                );
-            }
-
-
-            if (errorElement) {
-
-                errorElement.textContent =
-                    "";
-            }
+    ["fullName", "course", "yearLevel", "about"].forEach((id) => {
+        const field = document.getElementById(id);
+        const error = document.getElementById(`${id}Error`);
+        if (field) {
+            field.classList.remove("input-error");
+            field.removeAttribute("aria-invalid");
         }
-    );
+        if (error) error.textContent = "";
+    });
 
-
-    const formStatus =
-        document.getElementById(
-            "formStatus"
-        );
-
-
-    if (formStatus) {
-
-        formStatus.textContent =
-            "";
-
-        formStatus.classList.remove(
-            "error"
-        );
+    const status = document.getElementById("formStatus");
+    if (status) {
+        status.textContent = "";
+        status.className = "form-status";
     }
 }
 
+function displayValidationErrors(errors) {
+    let firstInvalid = null;
 
-/*
- * Cancel Edit Profile.
- */
+    Object.entries(errors).forEach(([id, message]) => {
+        const field = document.getElementById(id);
+        const error = document.getElementById(`${id}Error`);
+        if (error) error.textContent = message;
+        if (field) {
+            field.classList.add("input-error");
+            field.setAttribute("aria-invalid", "true");
+            if (!firstInvalid) firstInvalid = field;
+        }
+    });
 
-function cancelEdit() {
+    const status = document.getElementById("formStatus");
+    if (status) {
+        status.textContent = "Please correct the highlighted fields.";
+        status.className = "form-status error";
+    }
+    if (firstInvalid) firstInvalid.focus();
+}
 
+async function handleProfileSave(event) {
+    event.preventDefault();
     clearValidationErrors();
 
-
-    const savedProfile =
-        loadProfile();
-
-
-    populateEditForm(
-        savedProfile
-    );
-
-
-    closeEditProfile();
-}
-
-
-/*
- * Close Edit Profile.
- */
-
-function closeEditProfile() {
-
-    const profileView =
-        document.getElementById(
-            "profileView"
-        );
-
-
-    const editSection =
-        document.getElementById(
-            "editProfileSection"
-        );
-
-
-    if (editSection) {
-
-        editSection.hidden = true;
-    }
-
-
-    if (profileView) {
-
-        profileView.hidden = false;
-    }
-
-
-    const editProfileButton =
-        document.getElementById(
-            "editProfileButton"
-        );
-
-
-    if (editProfileButton) {
-
-        editProfileButton.focus();
-    }
-
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-}
-
-
-/* =========================================================
-   ACTIVITY 6 - CAMERA INTEGRATION
-   ========================================================= */
-
-
-/*
- * Initialize camera after Cordova is ready.
- */
-
-function initializeCameraFeature() {
-
-    console.log(
-        "Cordova device ready - initializing camera."
-    );
-
-
-    const changePictureButton =
-        document.getElementById(
-            "changeProfilePictureButton"
-        );
-
-
-    if (changePictureButton) {
-
-        changePictureButton.addEventListener(
-            "click",
-            openCamera
-        );
-    }
-
-
-    loadSavedProfileImage();
-}
-
-
-/*
- * Open the device camera.
- */
-
-function openCamera() {
-
-    /*
-     * Make sure Cordova Camera is available.
-     */
-
-    if (
-        !navigator.camera ||
-        typeof Camera === "undefined"
-    ) {
-
-        alert(
-            "Unable to access the camera. Please run this application on a device with Cordova camera support."
-        );
-
+    const editedProfile = getProfileFromForm();
+    const validation = validateProfile(editedProfile);
+    if (!validation.isValid) {
+        displayValidationErrors(validation.errors);
         return;
     }
 
+    const status = document.getElementById("formStatus");
+    const saveButton = event.submitter;
+    if (saveButton) {
+        saveButton.disabled = true;
+        saveButton.textContent = "Saving...";
+    }
+    if (status) status.textContent = "Saving profile to database...";
+
+    try {
+        const token = getAuthToken();
+        if (!token) {
+            redirectToLogin();
+            return;
+        }
+
+        const response = await fetch(`${API_BASE_URL}/api/profile`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                ...editedProfile,
+                profileImage: currentProfile ? currentProfile.profileImage : null
+            })
+        });
+
+        if (handleUnauthorizedResponse(response)) return;
+
+        const data = await response.json();
+        if (!response.ok || !data.success) {
+            throw new Error(data.message || "Unable to update profile.");
+        }
+
+        currentProfile = normalizeProfile(data.profile);
+        renderProfile(currentProfile);
+
+        if (status) {
+            status.textContent = "Profile updated successfully.";
+            status.className = "form-status success";
+        }
+
+        setTimeout(closeEditProfile, 700);
+    } catch (error) {
+        console.error("Profile update error:", error);
+        if (status) {
+            status.textContent = error.message || "Unable to update your profile.";
+            status.className = "form-status error";
+        }
+    } finally {
+        if (saveButton) {
+            saveButton.disabled = false;
+            saveButton.textContent = "Save Changes";
+        }
+    }
+}
+
+function cancelEdit() {
+    clearValidationErrors();
+    if (currentProfile) populateEditForm(currentProfile);
+    closeEditProfile();
+}
+
+function closeEditProfile() {
+    const profileView = document.getElementById("profileView");
+    const editSection = document.getElementById("editProfileSection");
+    if (editSection) editSection.hidden = true;
+    if (profileView) profileView.hidden = false;
+
+    const editButton = document.getElementById("editProfileButton");
+    if (editButton) editButton.focus();
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function initializeCameraFeature() {
+    const button = document.getElementById("changeProfilePictureButton");
+    if (!button || button.dataset.cameraBound === "true") return;
+
+    button.addEventListener("click", openCamera);
+    button.dataset.cameraBound = "true";
+}
+
+function openCamera() {
+    if (!navigator.camera || typeof Camera === "undefined") {
+        alert("Camera is not ready yet. Please wait a moment and try again.");
+        return;
+    }
 
     navigator.camera.getPicture(
-
         cameraSuccess,
-
         cameraError,
-
         {
-
-            /*
-             * Moderate quality keeps the Base64 image
-             * small enough for localStorage.
-             */
-
-            quality: 50,
-
-
-            /*
-             * DATA_URL returns the image as Base64.
-             */
-
-            destinationType:
-                Camera.DestinationType.DATA_URL,
-
-
-            /*
-             * Use the actual camera.
-             */
-
-            sourceType:
-                Camera.PictureSourceType.CAMERA,
-
-
-            /*
-             * JPEG keeps the image size smaller.
-             */
-
-            encodingType:
-                Camera.EncodingType.JPEG,
-
-
-            /*
-             * Only capture still pictures.
-             */
-
-            mediaType:
-                Camera.MediaType.PICTURE,
-
-
-            /*
-             * Correct portrait/landscape orientation.
-             */
-
+            quality: 45,
+            destinationType: Camera.DestinationType.DATA_URL,
+            sourceType: Camera.PictureSourceType.CAMERA,
+            encodingType: Camera.EncodingType.JPEG,
+            mediaType: Camera.MediaType.PICTURE,
             correctOrientation: true,
-
-
-            /*
-             * Reduce image dimensions.
-             *
-             * This is important because storing a
-             * full-resolution Base64 image in
-             * localStorage can exceed storage limits.
-             */
-
-            targetWidth: 600,
-
-            targetHeight: 600,
-
-
-            /*
-             * Activity 6 only needs the image inside
-             * the Student Profile.
-             */
-
+            targetWidth: 320,
+            targetHeight: 320,
             saveToPhotoAlbum: false
         }
     );
 }
 
-
-/*
- * Camera success.
- *
- * imageData contains the JPEG image encoded
- * as a Base64 string.
- */
-
+// Keep this as a normal Function. Cordova Camera's runtime argument checker
+// rejects AsyncFunction callbacks even though they are callable JavaScript.
 function cameraSuccess(imageData) {
-
-
     if (!imageData) {
-
-        alert(
-            "The camera did not return an image. Please try again."
-        );
-
+        alert("The camera did not return an image. Please try again.");
         return;
     }
 
+    const imageSource = imageData.startsWith("data:")
+        ? imageData
+        : `data:image/jpeg;base64,${imageData}`;
 
-    const imageSource = imageData;
+    const image = document.getElementById("profileImage");
+    if (image) image.src = imageSource;
 
-
-    const profileImage =
-        document.getElementById(
-            "profileImage"
-        );
-
-
-    if (!profileImage) {
-
-        console.error(
-            "Profile image element was not found."
-        );
-
+    if (!currentProfile) {
+        alert("Your profile has not finished loading. Please try again.");
         return;
     }
 
-
-    /*
-     * Display captured picture.
-     */
-
-    profileImage.src =
-        imageSource;
-
-
-    /*
-     * Save captured picture.
-     */
-
-    saveProfileImage(
-        imageSource
-    );
-
-
-    console.log(
-        "Profile picture successfully updated."
-    );
+    currentProfile.profileImage = imageSource;
+    void saveProfilePictureToDatabase();
 }
 
+async function saveProfilePictureToDatabase() {
+    const token = getAuthToken();
+    if (!currentProfile || !token) {
+        if (!token) redirectToLogin();
+        return;
+    }
 
-/*
- * Camera error/cancellation.
- */
+    try {
+        const response = await fetch(`${API_BASE_URL}/api/profile`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                fullName: currentProfile.fullName,
+                course: currentProfile.course,
+                yearLevel: currentProfile.yearLevel,
+                about: currentProfile.about,
+                skills: currentProfile.skills,
+                profileImage: currentProfile.profileImage
+            })
+        });
+
+        if (handleUnauthorizedResponse(response)) return;
+
+        const data = await response.json();
+        if (!response.ok || !data.success) {
+            throw new Error(data.message || "Unable to save profile picture.");
+        }
+
+        currentProfile = normalizeProfile(data.profile);
+        renderProfile(currentProfile);
+        alert("Profile picture updated successfully.");
+    } catch (error) {
+        console.error("Profile picture update error:", error);
+        alert("The picture was captured, but it could not be saved to the database.");
+    }
+}
 
 function cameraError(message) {
-
-    const errorMessage =
-        String(message || "");
-
-
-    const lowerMessage =
-        errorMessage.toLowerCase();
-
-
-    /*
-     * Cancellation should NOT replace the existing
-     * profile picture and should NOT crash the app.
-     */
+    const errorMessage = String(message || "");
+    const lower = errorMessage.toLowerCase();
 
     if (
-        lowerMessage.includes("cancel") ||
-        lowerMessage.includes(
-            "no image selected"
-        ) ||
-        lowerMessage.includes(
-            "camera cancelled"
-        )
+        lower.includes("cancel") ||
+        lower.includes("no image selected") ||
+        lower.includes("camera cancelled")
     ) {
-
-        console.log(
-            "Camera operation cancelled by user."
-        );
-
         return;
     }
 
-
-    /*
-     * Other camera errors.
-     */
-
-    console.error(
-        "Camera error:",
-        errorMessage
-    );
-
-
-    alert(
-        "Unable to access the camera. Please check your device permissions."
-    );
-}
-
-
-/* =========================================================
-   ACTIVITY 6 - IMAGE PERSISTENCE
-   ========================================================= */
-
-
-/*
- * Save profile image to localStorage.
- */
-
-function saveProfileImage(imageSource) {
-
-    try {
-
-        localStorage.setItem(
-            PROFILE_IMAGE_KEY,
-            imageSource
-        );
-
-
-        console.log(
-            "Profile picture saved."
-        );
-
-
-    } catch (error) {
-
-        console.error(
-            "Unable to save profile image:",
-            error
-        );
-
-
-        alert(
-            "The picture was captured, but it could not be saved permanently."
-        );
-    }
-}
-
-
-/*
- * Restore saved profile picture.
- */
-
-function loadSavedProfileImage() {
-
-    try {
-
-        const savedImage =
-            localStorage.getItem(
-                PROFILE_IMAGE_KEY
-            );
-
-
-        if (!savedImage) {
-
-            return;
-        }
-
-
-        const profileImage =
-            document.getElementById(
-                "profileImage"
-            );
-
-
-        if (profileImage) {
-
-            profileImage.src =
-                savedImage;
-        }
-
-
-    } catch (error) {
-
-        console.error(
-            "Unable to load saved profile image:",
-            error
-        );
-    }
+    console.error("Camera error:", errorMessage);
+    alert("Unable to access the camera. Please check your device permissions.");
 }
